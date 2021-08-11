@@ -51,7 +51,7 @@ async def help(ctx):
     embed.add_field(name="Moderation:", value="`kick`", inline=False)
     embed.add_field(name="Utilities:", value="`about`, `ping`,", inline=False)
     
-    embed.set_footer(text="Prefix in this guild !, More commands will be added soon ;)")
+    embed.set_footer(text="My prefix in this guild !, More commands will be added soon ;)")
     await ctx.send(embed=embed)
 
 @bot.command()
