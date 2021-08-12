@@ -136,7 +136,7 @@ async def on_ready():
 @bot.event
 async def on_message():
     if 'redstone' in message.content:
-        await message.channel.send("Redstones OP")
+        await message.channel.send(f"{message.author.mention} Restones OP!")
 
 
 @bot.listen()
