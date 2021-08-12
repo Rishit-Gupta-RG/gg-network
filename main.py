@@ -116,7 +116,7 @@ async def youtube(ctx, *, search):
 
 #MODERATION
 @bot.command()
-@commands.has_permissions(administrator=True)
+@commands.has_permissions(kick_members=True)
 async def kick(ctx, member: discord.Member):
     await member.kick()
     await ctx.send(f"{member.name} has been kicked by {ctx.author.name}!")
