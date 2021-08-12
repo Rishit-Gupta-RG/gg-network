@@ -137,6 +137,8 @@ async def on_ready():
 async def on_message():
     if 'redstone' in message.content:
         await message.channel.send(f"{message.author.mention} Restones OP!")
+     else:
+     await bot.process_commands(message)
 
 
 @bot.listen()
