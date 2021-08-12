@@ -133,6 +133,11 @@ async def on_ready():
     await bot.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name="Players in SMP | !help"))
     print('My Ready is Body')
 
+@bot.event
+async def on_message():
+    if 'redstone' in message.content:
+        await messgae.channel.send("Redstones OP")
+
 
 @bot.listen()
 async def on_message(message):
