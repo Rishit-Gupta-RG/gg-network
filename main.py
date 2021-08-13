@@ -133,11 +133,6 @@ async def on_ready():
     await bot.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name="Players in SMP | !help"))
     print('My Ready is Body')
 
-@bot.event
-async def on_message():
-    if 'test' in message.content:
-        await message.channel.send(f"{message.author.mention} testing")
-
 @bot.listen()
 async def on_message(message):
     if "tutorial" in message.content.lower():
