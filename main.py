@@ -44,6 +44,17 @@ async def square(ctx,a:int):
     await ctx.send(f"{a*a}") #Multilies A by itself
 
 @bot.command()
+async def calc(ctx, a:int,b:int,c:int)
+    if b='+'
+        await ctx.send(f"{a} + {c} = {a+c}")
+    if b='-'
+        await ctx.send(f"{a} - {c} = {a-c}")
+    if b='*'
+        await ctx.send(f"{a} * {c} = {a*c}")
+    if b='/'
+        await ctx.send(f"{a} / {c} = {a/c}")
+
+@bot.command()
 async def help(ctx):
     embed = discord.Embed(title="GG SMP BOT!", description="Hello, I am **GG SMP BOT** made for __GG SMP__ a Minecraft server \n" "Here's the list of available commands", color=discord.Color.purple())
     embed.add_field(name="Information:", value="`serverinfo`,`check`", inline=False)
