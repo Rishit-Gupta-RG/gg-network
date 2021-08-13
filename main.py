@@ -47,7 +47,7 @@ async def square(ctx,a:int):
 async def help(ctx):
     embed = discord.Embed(title="GG SMP BOT!", description="Hello, I am **GG SMP BOT** made for __GG SMP__ a Minecraft server \n" "Here's the list of available commands", color=discord.Color.purple())
     embed.add_field(name="Information:", value="`serverinfo`,`check`", inline=False)
-    embed.add_field(name="Maths:", value="`add`, `sub`, `multi`, `divide`")
+    embed.add_field(name="Maths:", value="`add`, `sub`, `multi`, `divide`, `square`")
     embed.add_field(name="Moderation:", value="`kick`", inline=False)
     embed.add_field(name="Utilities:", value="`about`, `ping`,", inline=False)
     
@@ -112,7 +112,7 @@ async def youtube(ctx, *, search):
     search_content= html_content.read().decode()
     search_results = re.findall(r'\/watch\?v=\w+', search_content)
     #print(search_results)
-    await ctx.send('https://www.youtube.com' + search_results[0])
+    await ctx.send("Here's what I found" 'https://www.youtube.com' + search_results[0])
 
 #MODERATION
 @bot.command()
@@ -132,12 +132,5 @@ async def kick_error(ctx, error):
 async def on_ready():
     await bot.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name="Players in SMP | !help"))
     print('My Ready is Body')
-
-@bot.listen()
-async def on_message(message):
-    if "tutorial" in message.content.lower():
-        # in this case don't respond with the word "Tutorial" or you will call the on_message event recursively
-        await message.channel.send('This is that you want http://youtube.com/fazttech')
-        await bot.process_commands(message)
 
 bot.run('ODY0OTUzMzc5MjEzNjcyNDU4.YO88mw.TMzGde4mx5tItrZXwE9qIy8p-Vg')
