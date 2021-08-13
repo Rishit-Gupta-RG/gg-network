@@ -48,7 +48,7 @@ async def help(ctx):
     embed = discord.Embed(title="GG SMP BOT!", description="Hello, I am **GG SMP BOT** made for __GG SMP__ a Minecraft server \n" "Here's the list of available commands", color=discord.Color.purple())
     embed.add_field(name="Information:", value="`serverinfo`,`check`", inline=False)
     embed.add_field(name="Maths:", value="`add`, `sub`, `multi`, `divide`, `square`")
-    embed.add_field(name='Other Commands', value="`youtube`", infline=False)
+    embed.add_field(name='Other Commands', value="`youtube`", inline=False)
     embed.add_field(name="Moderation:", value="`kick`", inline=False)
     embed.add_field(name="Utilities:", value="`about`, `ping`", inline=False)
     
@@ -113,7 +113,7 @@ async def youtube(ctx, *, search):
     search_content= html_content.read().decode()
     search_results = re.findall(r'\/watch\?v=\w+', search_content)
     #print(search_results)
-    await ctx.send("Here's what I found" '-' 'https://www.youtube.com' + search_results[0])
+    await ctx.send("Here's what I found" ' ' 'https://www.youtube.com' + search_results[0])
 
 #MODERATION
 @bot.command()
