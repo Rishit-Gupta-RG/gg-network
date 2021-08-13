@@ -113,7 +113,7 @@ async def youtube(ctx, *, search):
     search_content= html_content.read().decode()
     search_results = re.findall(r'\/watch\?v=\w+', search_content)
     #print(search_results)
-    await ctx.send("Here's what I found" ' ' 'https://www.youtube.com' + search_results[0])
+    await ctx.send("Here's what I found" '-' 'https://www.youtube.com' + search_results[0])
 
 #MODERATION
 @bot.command()
