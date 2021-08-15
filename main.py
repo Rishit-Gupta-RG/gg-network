@@ -8,7 +8,7 @@ import time
 from discord import Member
 from discord.ext.commands import has_permissions, MissingPermissions
 from urllib import parse, request
-import re
+
 
 from discord.ext.commands.errors import CheckAnyFailure
 
