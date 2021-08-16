@@ -9,6 +9,7 @@ import re
 from discord import Member
 from discord.ext.commands import has_permissions, MissingPermissions
 from urllib import parse, request
+from discord.ext.commands.converter import EmojiConverter
 
 
 from discord.ext.commands.errors import CheckAnyFailure
@@ -128,6 +129,16 @@ async def kick_error(ctx, error):
         await bot.send_message(ctx.message.channel, text)
 
 #MUSIC SECTION
+@bot.command()
+async def join(ctx):
+    channel = ctx.author.voice.channel
+    await channel.connect()
+    if message.author == bot.user:
+        emoji = get(bot.get_all_emojis(), name='leavee')
+        await bot.add_reaction(message, emoji)
+@bot.command()
+async def leave(ctx):
+    await ctx.voice_client.disconnect()
 
 # Events
 @bot.event
