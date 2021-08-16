@@ -111,7 +111,7 @@ async def youtube(ctx, *, search):
     query_string = parse.urlencode({'search_query': search})
     html_content = request.urlopen('http://www.youtube.com/results?' + query_string)
     search_content= html_content.read().decode()
-    search_results = re.findall(r'\/watch\?v=\w+', search_content)
+    search_results = re.findall( r"watch\?v=(\S{11})", html_content.read().decode())
     #print(search_results)
     await ctx.send("Here's what I found" ' ' 'https://www.youtube.com' + search_results[0])
 
