@@ -4,6 +4,7 @@ from discord.embeds import Embed
 from discord.ext import commands
 import datetime
 import time
+import re
 
 from discord import Member
 from discord.ext.commands import has_permissions, MissingPermissions
