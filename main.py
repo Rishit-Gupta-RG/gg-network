@@ -9,6 +9,7 @@ import re
 from discord import Member
 from discord.ext.commands import has_permissions, MissingPermissions
 from urllib import parse, request
+from discord.ext.commands.bot import Bot
 from discord.ext.commands.converter import EmojiConverter
 from discord.ext.commands.core import command
 
@@ -132,6 +133,13 @@ async def kick_error(ctx, error):
 #MUSIC SECTION %ARCHIEVED TILL LIBRARY IS INSTALLED%
 
 # Events
+
+@bot.event
+async def on_message(message):
+
+if "wow" in message.content:
+    await message.channel.send("oh wow")
+
 
 @bot.event
 async def on_ready():
