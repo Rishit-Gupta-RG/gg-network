@@ -10,6 +10,7 @@ from discord import Member
 from discord.ext.commands import has_permissions, MissingPermissions
 from urllib import parse, request
 from discord.ext.commands.converter import EmojiConverter
+from discord.ext.commands.core import command
 
 
 from discord.ext.commands.errors import CheckAnyFailure
@@ -127,59 +128,6 @@ async def kick_error(ctx, error):
     if isinstance(error, MissingPermissions):
         text = "Sorry {}, you do not have permissions to do that!".format(ctx.message.author)
         await bot.send_message(ctx.message.channel, text)
-
-@bot.command(aliases=['tempmute'])
-@commands.has_permission(manage_messages=True)
-async def mute(ctx, member: discord.Member=None, time=None, *, reason=None):
-if not member:
-	await ctx.send("You must mention a member to mute!")
-elif not time:
-	await ctx.send("You must mention a time!")
-else:
-	if not reason:
-   		reason="No reason given"
-    #Now timed mute manipulation
-    try:
-    	seconds = time[:-1] #Gets the numbers from the time argument, start to -1
-        duration = time[-1] #Gets the timed maniulation, s, m, h, d
-        if duration == "s":
-        	seconds = seconds * 1
-        elif duration == "m":
-        	seconds = seconds * 60
-        elif duration == "h":
-        	seconds = seconds * 60 * 60
-        elif duration == "d":
-        	seconds = seconds * 86400
-        else:
-        	await ctx.send("Invalid duration input")
-          	return
-    except Exception as e:
-    	print(e)
-        await ctx.send("Invalid time input")
-        return
-    guild = ctx.guild
-   	Muted = discord.utils.get(guild.roles, name="Muted")
-    if not Muted:
-    	Muted = await guild.create_role(name="Muted")
-        for channel in guild.channels:
-        await channel.set_permissions(mutedRole, speak=False, send_messages=False, read_message_history=True, read_messages=False)
-    await member.add_roles(Muted, reason=reason)
-    muted_embed = discord.Embed(title="Muted a user", description=f"{member.mention} Was muted by {ctx.author.mention} for {reason} to {time}")
-    await ctx.send(embed=muted_embed)
-    await asyncio.sleep(seconds)
-  	await member.remove_roles(Muted)
-    unmute_embed = discord.Embed(title="Mute over!", description=f'{ctx.author.mention} muted to {member.mention} for {reason} is over after {time}")
-    await ctx.send(embed=unmute_embed)
-
-@client.command(description="Unmutes a specified user.")
-@commands.has_permissions(manage_messages=True)
-async def unmute(ctx, member: discord.Member):
-   mutedRole = discord.utils.get(ctx.guild.roles, name="Muted")
-
-   await member.remove_roles(mutedRole)
-   await member.send(f" you have unmutedd from: - {ctx.guild.name}")
-   embed = discord.Embed(title="unmute", description=f" unmuted-{member.mention}",colour=discord.Colour.light_gray())
-   await ctx.send(embed=embed)
 
 #MUSIC SECTION %ARCHIEVED TILL LIBRARY IS INSTALLED%
 
