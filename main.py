@@ -136,7 +136,7 @@ async def kick_error(ctx, error):
 # Events
 @bot.event
 async def on_message(message):
-    if not.message.channel.id == 871006184990212118:
+    if not message.channel.id == 871006184990212118:
         return
     if "wow" in message.content:
         await message.channel.send("oh ok")
