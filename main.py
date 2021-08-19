@@ -132,10 +132,6 @@ async def kick_error(ctx, error):
 #MUSIC SECTION %ARCHIEVED TILL LIBRARY IS INSTALLED%
 
 # Events
-@bot.event
-async def on_message(message):
-    if "not" in message.content:
-           await bot.send_message(message.channel, 'yes')
 
 @bot.event
 async def on_ready():
