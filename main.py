@@ -135,7 +135,7 @@ async def kick_error(ctx, error):
 @bot.event
 async def on_message(message):
     if "not" in message.content:
-           await Bot.send_message(message.channel, 'yes')
+           await bot.send_message(message.channel, 'yes')
 
 @bot.event
 async def on_ready():
