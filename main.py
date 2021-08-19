@@ -132,6 +132,13 @@ async def kick_error(ctx, error):
 #MUSIC SECTION %ARCHIEVED TILL LIBRARY IS INSTALLED%
 
 # Events
+@Bot.event
+
+async def on_message(message):
+
+     if "not" in message.content:
+           await Bot.send_message(message.channel, 'yes')
+
 @bot.event
 async def on_ready():
     await bot.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name="Players in SMP | !help"))
