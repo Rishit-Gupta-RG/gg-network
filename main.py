@@ -1,5 +1,6 @@
 from logging import fatal
 import discord
+from discord import channel
 from discord.embeds import Embed
 from discord.ext import commands
 import datetime
@@ -135,6 +136,8 @@ async def kick_error(ctx, error):
 # Events
 @bot.event
 async def on_message(message):
+    if not.message.channel.id == 871006184990212118:
+        return
     if "wow" in message.content:
         await message.channel.send("oh ok")
     await bot.process_commands(message)
