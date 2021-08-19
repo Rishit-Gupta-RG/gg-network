@@ -132,7 +132,7 @@ async def kick_error(ctx, error):
 #MUSIC SECTION %ARCHIEVED TILL LIBRARY IS INSTALLED%
 
 # Events
-@Bot.event
+@bot.event
 
 async def on_message(message):
 
