@@ -74,7 +74,6 @@ async def hhgg(ctx):
 @bot.command()
 async def about(ctx):
     embed = discord.Embed(title="GG SMP", description= "Official Bot of GG SMP!", color=discord.Color.red())
-    embed.set_author(name=ctx.author.display_name, icon_url=ctx.author.avatar_url)
     embed.add_field(name="**Developed by -**", value="Rishit Gupta")
 
     await ctx.send(embed=embed)
@@ -142,11 +141,10 @@ async def on_message(message):
       return
     if "trade" or "trading" in message.content:
         embed = discord.Embed(title= "Trading", description="The [trading](https://minecraft.fandom.com/wiki/Trading#Bedrock_Edition_offers) system is a gameplay mechanic that allows players to trade emeralds for items and vice-versa with villagers as well as wandering traders.\n""**There are 5 Tiers of trading:**\n""1. Novice\n""2. Apprentice\n""3. Journeyman\n""4. Expert\n""5. Master", color=discord.Colour.blurple())
-        icon = str(ctx.guild.icon_url)
-        embed.set_thumbnail(url=icon)
+        embed.set_thumbnail('https://media.discordapp.net/attachments/868956059409203241/872541491061481482/AKG_Server_icon.gif')
 
         await message.channel.send(embed=embed)
-
+        
 #BOT ACTVITY STATUS
 @bot.event
 async def on_ready():
