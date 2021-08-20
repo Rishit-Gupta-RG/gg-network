@@ -148,6 +148,6 @@ async def on_message(message):
 @bot.event
 async def on_ready():
     await bot.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name="Players in SMP | !help"))
-    print('My Ready is Body')
+    print('My Ready is Body.')
 
 bot.run('ODY0OTUzMzc5MjEzNjcyNDU4.YO88mw.TMzGde4mx5tItrZXwE9qIy8p-Vg')
