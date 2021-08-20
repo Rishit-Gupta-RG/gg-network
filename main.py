@@ -50,7 +50,7 @@ async def square(ctx,a:int):
 
 @bot.command()
 async def help(ctx):
-    embed = discord.Embed(title="GG SMP BOT!", description="Hello, I am **GG SMP BOT** made for __GG SMP__ a Minecraft server \n" "Here's the list of available commands", color=discord.Color.purple())
+    embed = discord.Embed(title="GG SMP BOT!", description="Hello, I am **GG SMP BOT** made for __GG SMP__ a Minecraft server \n" "Here's the [list](https://minecraft.fandom.com/wiki/Java_Edition_Alpha]) of available commands", color=discord.Color.purple())
     embed.add_field(name="Information:", value="`serverinfo`,`check`", inline=False)
     embed.add_field(name="Maths:", value="`add`, `sub`, `multi`, `divide`, `square`")
     embed.add_field(name='Other Commands', value="`youtube`", inline=False)
