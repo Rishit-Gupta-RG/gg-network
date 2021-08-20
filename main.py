@@ -143,6 +143,7 @@ async def on_message(message):
     if "trade" or "trading" in message.content:
         embed = discord.Embed(title= "Trading", description="The [trading](https://minecraft.fandom.com/wiki/Trading#Bedrock_Edition_offers) system is a gameplay mechanic that allows players to trade emeralds for items and vice-versa with villagers as well as wandering traders.\n""**There are 5 Tiers of trading:**\n""1. Novice\n""2. Apprentice\n""3. Journeyman\n""4. Expert\n""5. Master", color=discord.Colour.blurple())
         embed.set_thumbnail(url=icon)
+        icon = str(ctx.guild.icon_url)
 
         await message.channel.send(embed=embed)
 
