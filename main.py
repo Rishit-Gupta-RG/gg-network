@@ -138,8 +138,8 @@ async def kick_error(ctx, error):
 async def on_message(message):
     await bot.process_commands(message)
     if not message.channel.id == 871006184990212118:
-    if message.author == bot.user:
-      return
+        if message.author == bot.user:
+         return
     if "trade" or "trading" in message.content:
         embed = discord.Embed(title= "Trading", description="The [trading](https://minecraft.fandom.com/wiki/Trading#Bedrock_Edition_offers) system is a gameplay mechanic that allows players to trade emeralds for items and vice-versa with villagers as well as wandering traders.\n""**There are 5 Tiers of trading:**\n""1. Novice\n""2. Apprentice\n""3. Journeyman\n""4. Expert\n""5. Master", color=discord.Colour.blurple())
         embed.set_thumbnail(url='https://media.discordapp.net/attachments/868956059409203241/872541491061481482/AKG_Server_icon.gif')
