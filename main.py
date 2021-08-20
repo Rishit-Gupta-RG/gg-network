@@ -1,6 +1,7 @@
 from logging import fatal
 import discord
 from discord import channel
+from discord import embeds
 from discord.embeds import Embed
 from discord.ext import commands
 import datetime
@@ -139,8 +140,11 @@ async def on_message(message):
     await bot.process_commands(message)
     if not message.channel.id == 871006184990212118:
       return
-    if "wow" in message.content:
-        await message.channel.send("oh ok")
+    if "trade" or "trading" in message.content:
+        embed = discord.Embed(title= "Trading", description="The [trading system](https://minecraft.fandom.com/wiki/Trading#Bedrock_Edition_offers) is a gameplay mechanic that allows players to trade emeralds for items (and vice-versa) with villagers as well as wandering traders. )\n""**There are 5 Tiers of trading:**\n""1. Novice\n""2. Apprentice\n""3. Journeyman\n""4. Expert\n""5. Master", color=discord.Colour.random)
+        embed.set_thumbnail(url=icon)
+
+        await message.channel.send(embed=embed)
 
 #BOT ACTVITY STATUS
 @bot.event
