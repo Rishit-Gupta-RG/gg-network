@@ -62,7 +62,7 @@ async def help(ctx):
     await ctx.send(embed=embed)
 
 @bot.group(invoke_without_command=True)
-async def tag(ctx):
+async def taglist(ctx):
     embed = discord.Embed(title="Tag List", description= "Type `!tag <tag_name>` to view that tag", color=discord.Color.dark_gold())
     embed.add_field(name="Available Tags", value="`redstone`")
 
