@@ -68,6 +68,13 @@ async def tag(ctx):
 
     await ctx.send(embed=embed)
 
+@bot.command()
+async def tag(ctx):
+    embed = discord.Embed(title="Tag List", description= "Type `!tag <tag_name>` to view that tag", color=discord.Color.dark_gold())
+    embed.add_field(name="Available Tags", value="`redstone`")
+
+    await ctx.send(embed=embed)
+
 @tag.command()
 async def redstone(ctx):
     embed = discord.Embed(title="Redstone", description= "Here you can find uses of [Redstone](https://minecraft.fandom.com/wiki/Redstone_Dust)")
