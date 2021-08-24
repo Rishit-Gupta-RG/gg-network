@@ -61,6 +61,19 @@ async def help(ctx):
     embed.set_footer(text="My prefix in this guild !, More commands will be added soon ;)")
     await ctx.send(embed=embed)
 
+@bot.group(invoke_without_command=True)
+async def tag(ctx):
+    embed = discord.Embed(title="Tag List", description= "Type `!tag <tag_name>` to view that tag", color=discord.Color.dark_gold())
+    embed.add_field(name="Available Tags", value="`redstone`")
+
+    await ctx.send(embed=embed)
+
+@tag.command()
+async def redstone(ctx):
+    embed = discord.Embed(title="Redstone", description= "Here you can find uses of [Redstone](https://minecraft.fandom.com/wiki/Redstone_Dust)")
+
+    await ctx.send(embed=embed)
+
 @bot.command()
 async def hhgg(ctx):
     embed = discord.Embed(title="SERVER RULES", color=discord.Color.blue())
