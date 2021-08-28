@@ -154,9 +154,7 @@ async def kick_error(ctx, error):
 #MUSIC SECTION %ARCHIEVED TILL LIBRARY IS INSTALLED%
 
 #AUTO PLAYER HELP
-@bot.command()
-async def hh(ctx):
-    await ctx.send('**__SERVER UPDATES__**\n'"> **Discord**\n""**1.** All Minecraft channels (except Support category) are locked for @everyone, you need SMP Members role to message in these channels.\n""**2.** Whitelisted role for those who are whitelisted, SMP Members role can be obtained by logging in to Minecraft Server.\n""**3.** Server [rules](https://discord.com/channels/817003562663149578/869836543232212992/872556902947618886) updated as another status bot was removed.\n"" > **Minecraft**\n""**1.** Server difficulty changed from `EASY` to `NORMAL`.")
+
 
         
 #BOT ACTVITY STATUS
