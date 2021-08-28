@@ -87,7 +87,7 @@ async def hhgg(ctx):
     embed.add_field(name="Minecraft Server Rules", value="**1.** Don't steal anyone's item or opening someone chest without their permission is not allowed. \n""**2.** Be like a real warrior! Don't attack on someone without making them aware of it.\n""If you don't follow the above point and directly attack then its __responsibility of other players nearby to kill the player who is breaking this rule__.\n""**3.** If someone hits you by mistake then don't hit him back, this leads in a conflict.\n""**4.** Everyone have to contribute in public builds.\n""**5.** Do not damage property of others.\n""**6.** Mass use of **TNT** is strictly prohibited. Even in debris mining make sure you call a metting before going to mine debris with **TNT**.\n""**7.** Make sure you sleep when everyone is sleeping, if you are in a serious condition and can't sleep then leave the server and rejoin.", inline=False)
     embed.add_field(name="Discord Server Rules", value="There will be no rules in this discord server and no automod. But still don't break the basic rules.", inline=False)
     embed.add_field(name="SERVER INFO", value="**Server IP** - `RiAKG.aternos.me`\n""**Port** - `34624`\n", inline=False)
-    embed.add_field(name="SERVER FAQ", value="You can't join server anytime, you can check if server is online or offline in <#859365811473874964>. If server is offline then you can ask <@&872499621149163620> to turn it back on.", inline=False)
+    embed.add_field(name="SERVER FAQ", value="Server is not online for 24/7, You can check staus of server by typing `!check`. If server is offline then you can ask <@&872499621149163620> to turn it back on.", inline=False)
 
     await ctx.send(embed=embed)
 
@@ -127,7 +127,7 @@ async def serverinfo(ctx):
 async def check(ctx):
     embed = discord.Embed(title="Checking Server Status", color=discord.Color.gold())
     embed.set_author(name=ctx.author.display_name, icon_url=ctx.author.avatar_url)
-    embed.add_field(name="To check status of the server :", value= " Go to <#859365811473874964> and react with :arrows_counterclockwise:\n" "**OR \n**" "Type `?check`.")
+    embed.add_field(name="To check status of the server :", value= "Type `?check` to check server staus!")
 
     await ctx.send(embed=embed)
     
@@ -154,7 +154,9 @@ async def kick_error(ctx, error):
 #MUSIC SECTION %ARCHIEVED TILL LIBRARY IS INSTALLED%
 
 #AUTO PLAYER HELP
-
+@bot.command()
+async def hh(ctx):
+    await ctx.send("**__SERVER UPDATES__**/n""> **Discord**\n""**1.** All Minecraft channels (except Support category) are locked for @everyone, you need `<@&880915073114177536>` role to message in these channels\n""**2.** `<@&880832906719801375>` role for those who are whitelisted, `<@&880915073114177536>` role can be obtained by logging in to Minecraft Server.\n"" > **Minecraft**\n""**1.** Server difficulty changed from `EASY` to `NORMAL`.")
         
 #BOT ACTVITY STATUS
 @bot.event
