@@ -156,7 +156,7 @@ async def kick_error(ctx, error):
 #AUTO PLAYER HELP
 @bot.command()
 async def hh(ctx):
-    await ctx.send('**__SERVER UPDATES__**\n'"> **Discord**\n""**1.** All Minecraft channels (except Support category) are locked for @everyone, you need <@&880915073114177536> role to message in these channels.\n""**2.** <@&880832906719801375> role for those who are whitelisted, <@&880915073114177536> role can be obtained by logging in to [Minecraft Server](https://discord.com/channels/817003562663149578/869836543232212992/872556902947618886).\n"" > **Minecraft**\n""**1.** Server difficulty changed from `EASY` to `NORMAL`.")
+    await ctx.send('**__SERVER UPDATES__**\n'"> **Discord**\n""**1.** All Minecraft channels (except Support category) are locked for @everyone, you need <@&880915073114177536> role to message in these channels.\n""**2.** <@&880832906719801375> role for those who are whitelisted, <@&880915073114177536> role can be obtained by logging in to Minecraft Server.\n""**3.** Server [rules](https://discord.com/channels/817003562663149578/869836543232212992/872556902947618886) updated as another status bot was removed"" > **Minecraft**\n""**1.** Server difficulty changed from `EASY` to `NORMAL`.")
 
         
 #BOT ACTVITY STATUS
