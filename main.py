@@ -153,7 +153,7 @@ async def kick(ctx):
     embed.add_field(name='Aliases', value='Coming soon....')
     embed.add_field(name='Examples', value='!kick @Ronit\n !kick 727526184161902614')
 
-    await ctx.send embed=embed
+    await ctx.send(embed=embed)
 
 
 #BOT ACTVITY STATUS
