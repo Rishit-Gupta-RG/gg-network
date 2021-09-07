@@ -49,7 +49,7 @@ async def divide(ctx,a:int,b:int):
 async def square(ctx,a:int):
     await ctx.send(f"{a*a}") #Multilies A by itself
 
-@bot.command()
+@bot.group(invoke_without_command=True)
 async def help(ctx):
     embed = discord.Embed(title="GG SMP BOT!", description="Hello, I am **GG SMP BOT** made for __GG SMP__ a Minecraft server \n" "Here's the list of available commands", color=discord.Color.purple())
     embed.add_field(name="Information:", value="`serverinfo`,`check`", inline=False)
@@ -63,13 +63,6 @@ async def help(ctx):
 
 @bot.group(invoke_without_command=True)
 async def tag(ctx):
-    embed = discord.Embed(title="Tag List", description= "Type `!tag <tag_name>` to view that tag", color=discord.Color.dark_gold())
-    embed.add_field(name="Available Tags", value="`redstone`")
-
-    await ctx.send(embed=embed)
-
-@bot.command()
-async def taglist(ctx):
     embed = discord.Embed(title="Tag List", description= "Type `!tag <tag_name>` to view that tag", color=discord.Color.dark_gold())
     embed.add_field(name="Available Tags", value="`redstone`")
 
@@ -151,12 +144,18 @@ async def kick_error(ctx, error):
         text = "Sorry {}, you do not have permissions to do that!".format(ctx.message.author)
         await bot.send_message(ctx.message.channel, text)
 
-#MUSIC SECTION %ARCHIEVED TILL LIBRARY IS INSTALLED%
+#HELP SUB-COMMANDS
 
-#AUTO PLAYER HELP
+@help.command
+async def kick(ctx):
+    embed = discord.Embed(title='Kick', description='Kicks a Member from the guild. This command requires **Kick Members** permission to work.')
+    embed.add_field(name='Usage', value="`!kick <user>`")
+    embed.add_field(name='Aliases', value='Coming soon....')
+    embed.add_field(name='Examples', value='!kick @Ronit\n !kick 727526184161902614')
+
+    await ctx.send embed=embed
 
 
-        
 #BOT ACTVITY STATUS
 @bot.event
 async def on_ready():
