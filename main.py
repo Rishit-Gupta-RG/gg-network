@@ -49,7 +49,7 @@ async def divide(ctx,a:int,b:int):
 async def square(ctx,a:int):
     await ctx.send(f"{a*a}") #Multilies A by itself
 
-@bot.group(invoke_without_command=True)
+@bot.group(invoke_without_command=False)
 async def help(ctx):
     embed = discord.Embed(title="GG SMP BOT!", description="Hello, I am **GG SMP BOT** made for __GG SMP__ a Minecraft server \n" "Here's the list of available commands", color=discord.Color.purple())
     embed.add_field(name="Information:", value="`serverinfo`,`check`", inline=False)
@@ -151,7 +151,7 @@ async def kick(ctx):
     embed = discord.Embed(title='Kick', description='Kicks a Member from the guild. This command requires **Kick Members** permission to work.')
     embed.add_field(name='Usage', value="`!kick <user>`")
     embed.add_field(name='Aliases', value='Coming soon....')
-    embed.add_field(name='Examples', value='!kick @Ronit\n !kick 727526184161902614')
+    embed.add_field(name='Examples', value='!kick @user')
 
     await ctx.send(embed=embed)
 
