@@ -49,7 +49,7 @@ async def divide(ctx,a:int,b:int):
 async def square(ctx,a:int):
     await ctx.send(f"{a*a}") #Multilies A by itself
 
-@bot.group(invoke_without_command=False)
+@bot.group(invoke_without_command=True)
 async def help(ctx):
     embed = discord.Embed(title="GG SMP BOT!", description="Hello, I am **GG SMP BOT** made for __GG SMP__ a Minecraft server \n" "Here's the list of available commands", color=discord.Color.purple())
     embed.add_field(name="Information:", value="`serverinfo`,`check`", inline=False)
@@ -59,6 +59,7 @@ async def help(ctx):
     embed.add_field(name="Utilities:", value="`about`, `ping`", inline=False)
     
     embed.set_footer(text="My prefix in this guild !, More commands will be added soon ;)")
+    
     await ctx.send(embed=embed)
 
 @bot.group(invoke_without_command=True)
@@ -71,6 +72,15 @@ async def tag(ctx):
 @tag.command()
 async def redstone(ctx):
     embed = discord.Embed(title="Redstone", description= "Here you can find uses of [Redstone](https://minecraft.fandom.com/wiki/Redstone_Dust)")
+
+    await ctx.send(embed=embed)
+
+@help.command
+async def kick(ctx):
+    embed = discord.Embed(title='Kick', description='Kicks a Member from the guild. This command requires **Kick Members** permission to work.')
+    embed.add_field(name='Usage', value="`!kick <user>`")
+    embed.add_field(name='Aliases', value='Coming soon....')
+    embed.add_field(name='Examples', value='!kick @user')
 
     await ctx.send(embed=embed)
 
@@ -138,7 +148,7 @@ async def youtube(ctx, *, search):
 @commands.has_permissions(kick_members=True)
 async def kick(ctx, member: discord.Member):
     await member.kick()
-    await ctx.send(f"{member.name} has been kicked by {ctx.author.name}!")
+    await ctx.send(f"**{member.name}** has been kicked by **{ctx.author.name}**!")
 async def kick_error(ctx, error):
     if isinstance(error, MissingPermissions):
         text = "Sorry {}, you do not have permissions to do that!".format(ctx.message.author)
@@ -146,14 +156,6 @@ async def kick_error(ctx, error):
 
 #HELP SUB-COMMANDS
 
-@help.command
-async def kick(ctx):
-    embed = discord.Embed(title='Kick', description='Kicks a Member from the guild. This command requires **Kick Members** permission to work.')
-    embed.add_field(name='Usage', value="`!kick <user>`")
-    embed.add_field(name='Aliases', value='Coming soon....')
-    embed.add_field(name='Examples', value='!kick @user')
-
-    await ctx.send(embed=embed)
 
 
 #BOT ACTVITY STATUS
