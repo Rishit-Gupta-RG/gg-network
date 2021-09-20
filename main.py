@@ -128,27 +128,27 @@ async def serverinfo(ctx):
 
 @bot.command
 async def stats(self, ctx):
-        guilds = sum(await self.bot.cogs["Communication"].handler("guild_count", self.bot.cluster_count))
-        channels = sum(await self.bot.cogs["Communication"].handler("channel_count", self.bot.cluster_count))
-        users = sum(await self.bot.cogs["Communication"].handler("user_count", self.bot.cluster_count))
+    guilds = sum(await self.bot.cogs["Communication"].handler("guild_count", self.bot.cluster_count))
+    channels = sum(await self.bot.cogs["Communication"].handler("channel_count", self.bot.cluster_count))
+    users = sum(await self.bot.cogs["Communication"].handler("user_count", self.bot.cluster_count))
 
-        embed = discord.Embed(title=f"{self.bot.user.name} Statistics", colour=self.bot.primary_colour)
-        embed.add_field(name="Owner", value="CHamburr#2591")
-        embed.add_field(name="Bot Version", value=self.bot.version)
-        embed.add_field(name="Uptime", value=self.get_bot_uptime(brief=True))
-        embed.add_field(name="Clusters", value=f"{self.bot.cluster}/{self.bot.cluster_count}")
-        if ctx.guild:
-            embed.add_field(name="Shards", value=f"{ctx.guild.shard_id + 1}/{self.bot.shard_count}")
-        else:
-            embed.add_field(name="Shards", value=f"{self.bot.shard_count}")
-        embed.add_field(name="Servers", value=str(guilds))
-        embed.add_field(name="Channels", value=str(channels))
-        embed.add_field(name="Users", value=str(users))
-        embed.add_field(name="CPU Usage", value=f"{psutil.cpu_percent()}%")
-        embed.add_field(name="RAM Usage", value=f"{psutil.virtual_memory().percent}%")
-        embed.add_field(name="Python Version", value=platform.python_version())
-        embed.add_field(name="discord.py Version", value=discord.__version__)
-        await ctx.send(embed=embed) 
+    embed = discord.Embed(title=f"{self.bot.user.name} Statistics", colour=self.bot.primary_colour)
+    embed.add_field(name="Owner", value="CHamburr#2591")
+    embed.add_field(name="Bot Version", value=self.bot.version)
+    embed.add_field(name="Uptime", value=self.get_bot_uptime(brief=True))
+    embed.add_field(name="Clusters", value=f"{self.bot.cluster}/{self.bot.cluster_count}")
+    if ctx.guild:
+        embed.add_field(name="Shards", value=f"{ctx.guild.shard_id + 1}/{self.bot.shard_count}")
+    else:
+        embed.add_field(name="Shards", value=f"{self.bot.shard_count}")
+    embed.add_field(name="Servers", value=str(guilds))
+    embed.add_field(name="Channels", value=str(channels))
+    embed.add_field(name="Users", value=str(users))
+    embed.add_field(name="CPU Usage", value=f"{psutil.cpu_percent()}%")
+    embed.add_field(name="RAM Usage", value=f"{psutil.virtual_memory().percent}%")
+    embed.add_field(name="Python Version", value=platform.python_version())
+    embed.add_field(name="discord.py Version", value=discord.__version__)
+    await ctx.send(embed=embed) 
 
 @bot.command()
 async def check(ctx):
