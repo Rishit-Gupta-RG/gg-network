@@ -7,6 +7,8 @@ from discord.ext import commands
 import datetime
 import time
 import re
+import requests
+from discord import Webhook, RequestsWebhookAdapter, File
 
 from discord import Member
 from discord.ext.commands import has_permissions, MissingPermissions
@@ -154,14 +156,12 @@ async def kick_error(ctx, error):
         text = "Sorry {}, you do not have permissions to do that!".format(ctx.message.author)
         await bot.send_message(ctx.message.channel, text)
 
-#HELP SUB-COMMANDS
-
 
 
 #BOT ACTVITY STATUS
 @bot.event
 async def on_ready():
-    await bot.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name="Players in SMP | !help"))
+    await bot.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name="Exaaams!! | !help"))
     print('My Ready is Body.')
 
 bot.run('ODY0OTUzMzc5MjEzNjcyNDU4.YO88mw.TMzGde4mx5tItrZXwE9qIy8p-Vg')
