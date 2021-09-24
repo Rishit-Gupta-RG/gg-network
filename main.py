@@ -7,7 +7,6 @@ from discord.ext import commands
 import datetime
 import time
 import re
-import requests
 from discord import Webhook, RequestsWebhookAdapter, File
 
 from discord import Member
