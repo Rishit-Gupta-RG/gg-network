@@ -16,6 +16,10 @@ from urllib import parse, request
 from discord.ext.commands.bot import Bot
 from discord.ext.commands.converter import EmojiConverter
 from discord.ext.commands.core import command
+from discord.utils import get
+from discord import FFmpegPCMAudio
+from discord import TextChannel
+from youtube_dl import YoutubeDL
 
 
 
@@ -158,17 +162,67 @@ async def kick_error(ctx, error):
         await bot.send_message(ctx.message.channel, text)
 
 #MUSIC
-@bot.command()
-async def join(ctx):
-    channel = ctx.author.voice.channel
-    await channel.connect()
-    await ctx.send("Successfully joined the voice channel.")
-@bot.command()
-async def leave(ctx):
-    await ctx.voice_client.disconnect()
-    await ctx.send("Successfully left the voice channel")
+# @bot.command()
+# async def join(ctx):
+#     channel = ctx.message.author.voice.channel
+#     voice = get(bot.voice_clients, guild=ctx.guild)
+#     if voice and voice.is_connected():
+#         await voice.move_to(channel)
+#     else:
+#         voice = await channel.connect()
+
+# players = {}
+# # command to play sound from a youtube URL
+# @bot.command()
+# async def play(ctx, url):
+#     YDL_OPTIONS = {'format': 'bestaudio', 'noplaylist': 'True'}
+#     FFMPEG_OPTIONS = {
+#         'before_options': '-reconnect 1 -reconnect_streamed 1 -reconnect_delay_max 5', 'options': '-vn'}
+#     voice = get(bot.voice_clients, guild=ctx.guild)
+
+#     if voice is not None and not voice.is_playing():
+#         with YoutubeDL(YDL_OPTIONS) as ydl:
+#             info = ydl.extract_info(url, download=False)
+#         URL = info['url']
+#         voice.play(FFmpegPCMAudio(URL, **FFMPEG_OPTIONS))
+#         voice.is_playing()
+#         await ctx.send('Bot is playing')
+
+# # check if the bot is already playing
+#     else:
+#         await ctx.send("Bot is already playing")
+#         return
 
 
+# # command to resume voice if it is paused
+# @bot.command()
+# async def resume(ctx):
+#     voice = get(bot.voice_clients, guild=ctx.guild)
+
+#     if not voice.is_playing():
+#         voice.resume()
+#         await ctx.send('Bot is resuming')
+
+
+# # command to pause voice if it is playing
+# @bot.command()
+# async def pause(ctx):
+#     voice = get(bot.voice_clients, guild=ctx.guild)
+
+#     if voice.is_playing():
+#         voice.pause()
+#         await ctx.send('Bot has been paused')
+
+
+## command to stop voice
+#  @bot.command()
+# async def stop(ctx):
+#     voice = get(bot.voice_clients, guild=ctx.guild)
+
+#     if voice.is_playing():
+#         voice.stop()
+#         await ctx.send('Stopping...')
+ 
 #BOT ACTVITY STATUS
 @bot.event
 async def on_ready():
