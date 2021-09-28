@@ -17,7 +17,6 @@ from discord.ext.commands.bot import Bot
 from discord.ext.commands.converter import EmojiConverter
 from discord.ext.commands.core import command
 from discord.utils import get
-from discord import FFmpegPCMAudio
 from discord import TextChannel
 from youtube_dl import YoutubeDL
 
