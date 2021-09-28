@@ -3,6 +3,7 @@ import discord
 from discord import channel
 from discord import embeds
 from discord.embeds import Embed
+import asyncio
 from discord.ext import commands
 import datetime
 import time
@@ -15,6 +16,7 @@ from urllib import parse, request
 from discord.ext.commands.bot import Bot
 from discord.ext.commands.converter import EmojiConverter
 from discord.ext.commands.core import command
+
 
 
 from discord.ext.commands.errors import CheckAnyFailure
@@ -154,6 +156,18 @@ async def kick_error(ctx, error):
     if isinstance(error, MissingPermissions):
         text = "Sorry {}, you do not have permissions to do that!".format(ctx.message.author)
         await bot.send_message(ctx.message.channel, text)
+
+#MUSIC
+@bot.command()
+async def join(ctx):
+    channel = ctx.author.voice.channel
+    await channel.connect()
+    await ctx.send("Successfully joined the voice channel.")
+@bot.command()
+async def leave(ctx):
+    await ctx.voice_client.disconnect()
+    await ctx.send("Successfully left the voice channel")
+
 
 #BOT ACTVITY STATUS
 @bot.event
