@@ -155,7 +155,15 @@ async def kick_error(ctx, error):
         text = "Sorry {}, you do not have permissions to do that!".format(ctx.message.author)
         await bot.send_message(ctx.message.channel, text)
 
-
+@bot.command
+@command.has_permissions(kick_members=True)
+async def kick(ctx, member: discord.Member):
+    await member.kick()
+    await ctx.send(f"Successfully banned **{member.name}**")
+async def kick_error(ctx, error):
+    if isinstance(error, MissingPermissions):
+        text = "Sorry {}, you do not have permissions to do that!".format(ctx.message.author)
+        await bot.send_message(ctx.message.channel, text)
 
 #BOT ACTVITY STATUS
 @bot.event
