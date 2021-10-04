@@ -37,11 +37,11 @@ async def ping(ctx):
 
 #CALCULATOR
 @bot.command() 
-async def add(ctx,a:int, b:int): 
+async def add(ctx,a:float, b:float): 
     await ctx.send(f"{a} + {b} = {a+b}") #Adds A and B
 
 @bot.command() 
-async def sub(ctx,a:int,b:int): 
+async def sub(ctx,a:float,b:float): 
     await ctx.send(f"{a} - {b} = {a-b}") #Subtracts A and B
 
 @bot.command() 
