@@ -159,7 +159,7 @@ async def member(ctx):
 
 @member.command(name='Rishit', aliases=['<@787149777103486986>','rishit'])
 async def Rishit(ctx)
-await ctx.send('test')
+    await ctx.send('test')
 
 #MODERATION
 @bot.command()
