@@ -82,7 +82,7 @@ async def redstone(ctx):
 
     await ctx.send(embed=embed)
 
-@help.command
+@help.command()
 async def kick(ctx):
     embed = discord.Embed(title='Kick', description='Kicks a Member from the guild. This command requires **Kick Members** permission to work.', color=discord.Color.dark_red())
     embed.add_field(name='Usage', value="`!kick <user>`")
@@ -149,6 +149,17 @@ async def youtube(ctx, *, search):
     search_results = re.findall(r'\/watch\?v=\w+', search_content)
     #print(search_results)
     await ctx.send("Here's what I found" ' ' 'https://www.youtube.com' + search_results[0])
+
+@bot.group(invoke_without_command=True)
+async def member(ctx):
+    embed = discord.Embed(title="SMP Members list", description="**Total Members = 5**\n 1. <@787149777103486986>\n 2. <@852949635257204776>\n 3. <@727526184161902614>\n 4. <@833916716001001473> ", color=discord.Color.orange())
+    embed.set_footer(name="To get more info about a player type !member <Member>")
+
+    await ctx.send(embed=embed)
+
+@member.command(name='787149777103486986', aliases=['<@787149777103486986>','Rishit','rishit'])
+async def 787149777103486986(ctx)
+await ctx.send('test')
 
 #MODERATION
 @bot.command()
