@@ -153,7 +153,7 @@ async def youtube(ctx, *, search):
 @bot.group(invoke_without_command=True)
 async def member(ctx):
     embed = discord.Embed(title="SMP Members list", description="**Total Members = 5**\n 1. <@787149777103486986>\n 2. <@852949635257204776>\n 3. <@727526184161902614>\n 4. <@833916716001001473> ", color=discord.Color.orange())
-    embed.set_footer(name="To get more info about a player type !member <Member>")
+    embed.set_footer(text="To get more info about a player type !member <Member>")
 
     await ctx.send(embed=embed)
 
