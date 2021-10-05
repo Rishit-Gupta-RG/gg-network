@@ -157,8 +157,8 @@ async def member(ctx):
 
     await ctx.send(embed=embed)
 
-@member.command(name='787149777103486986', aliases=['<@787149777103486986>','Rishit','rishit'])
-async def 787149777103486986(ctx)
+@member.command(name='Rishit', aliases=['<@787149777103486986>','rishit'])
+async def Rishit(ctx)
 await ctx.send('test')
 
 #MODERATION
