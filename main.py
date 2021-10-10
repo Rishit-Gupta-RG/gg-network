@@ -22,13 +22,6 @@ from discord import TextChannel
 from youtube_dl import YoutubeDL
 import json
 
-with open('reports.json', encoding='utf-8') as f:
-  try:
-    report = json.load(f)
-  except ValueError:
-    report = {}
-    report['users'] = []
-
 from discord.ext.commands.errors import CheckAnyFailure
 
 bot = commands.Bot(command_prefix='!', description="This is a Helper Bot")
@@ -97,33 +90,6 @@ async def kick(ctx):
 
     await ctx.send(embed=embed)
 
-@bot.command(pass_context = True)
-@has_permissions(manage_roles=True, ban_members=True)
-async def warn(ctx,user:discord.User,*reason:str):
-  if not reason:
-    await client.say("Please provide a reason")
-    return
-  reason = ' '.join(reason)
-  for current_user in report['users']:
-    if current_user['name'] == user.name:
-      current_user['reasons'].append(reason)
-      break
-  else:
-    report['users'].append({
-      'name':user.name,
-      'reasons': [reason,]
-    })
-  with open('reports.json','w+') as f:
-    json.dump(report,f)
-
-@bot.command(pass_context = True)
-async def warnings(ctx,user:discord.User):
-  for current_user in report['users']:
-    if user.name == current_user['name']:
-      await bot.say(f"{user.name} has been reported {len(current_user['reasons'])} times : {','.join(current_user['reasons'])}")
-      break
-  else:
-    await bot.say(f"{user.name} has never been reported")  
 
 @warn.error
 async def kick_error(error, ctx):
