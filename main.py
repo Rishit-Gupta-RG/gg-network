@@ -165,7 +165,7 @@ async def Rishit(ctx):
 
 @member.command(name='Ronit', aliases=['727526184161902614', 'ronit'])
 async def Ronit(ctx):
-    embed = discord.Embed(title='RONIT', description="**Owns -** House, Garage, Cinema, Library, Automatic Wheat Farm\n **Constructed -** Wheat farm, Villager house\n **Contributed at -** Sugarcane farm, Villager house", color=discord.Color.random())
+    embed = discord.Embed(title='RONIT', description="**Owns -** House, Garage, Cinema, Library, Automatic Wheat Farm, Horse Stable\n **Constructed -** Wheat farm, Villager house\n **Contributed at -** Sugarcane farm, Villager house", color=discord.Color.random())
 
     await ctx.send(embed=embed)
 
