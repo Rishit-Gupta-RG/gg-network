@@ -152,14 +152,40 @@ async def youtube(ctx, *, search):
 
 @bot.group(invoke_without_command=True)
 async def member(ctx):
-    embed = discord.Embed(title="SMP Members list", description="**Total Members = 5**\n 1. <@787149777103486986>\n 2. <@852949635257204776>\n 3. <@727526184161902614>\n 4. <@833916716001001473> ", color=discord.Color.orange())
+    embed = discord.Embed(title="SMP Members list", description="**Total Members = 5**\n 1.  <@787149777103486986>\n 2. <@852949635257204776>\n 3. <@727526184161902614>\n 4. <@833916716001001473>\n 5. <@560838833680154624> ", color=discord.Color.orange())
     embed.set_footer(text="To get more info about a player type !member <Member>")
 
     await ctx.send(embed=embed)
 
-@member.command(name='Rishit', aliases=['<@787149777103486986>','rishit'])
+@member.command(name='Rishit', aliases=['787149777103486986','rishit'])
 async def Rishit(ctx):
-    await ctx.send('test')
+    embed = discord.Embed(title='RISHIT', description= "**Owns -** Castle (UC), Chicken/Sheep farm, Nether wart farm\n **Constructed -** Town hall(O/N), Spider xp farm, Sugarcane farm, Skeleton xp farm (2x)\n **Contributed at -** Villager house, Sugarcane farm", color=discord.Color.random())
+
+    await ctx.send(embed=embed)
+
+@member.command(name='Ronit', aliases=['727526184161902614', 'ronit'])
+async def Ronit(ctx):
+    embed = discord.Embed(title='RONIT', description="**Owns -** House, Garage, Cinema, Library, Automatic Wheat Farm\n **Constructed -** Wheat farm, Villager house\n **Contributed at -** Sugarcane farm, Villager house", color=discord.Color.random())
+
+    await ctx.send(embed=embed)
+
+@member.command(name='Arpit', aliases=['852949635257204776', 'arpit'])
+async def Arpit(ctx):
+    embed = discord.Embed(title='ARPIT', description='**Owns -** Tower (UC), Potato Farm\n **Constructed -** Villager house, Town hall(N), Skeleton xp farm\n **Contributed at - ** Sugarcane Farm, Villager House', color=discord.Color.random())
+
+    await ctx.send(embed=embed)
+
+@member.command(name='Divynash', aliases=['833916716001001473', 'divyansh'])
+async def Divyansh(ctx):
+    embed = discord.Embed(title='DIVYANSH', description='**Owns -** Among us house\n **Constructed -** Villager house\n **Contributed at -** Sugarcane Farm', color=discord.Color.random())
+
+    await ctx.send(embed=embed)
+
+@member.command(name='Arnav', aliases=['560838833680154624', 'arnob', 'Arnob', 'arnav'])
+async def Arnav(ctx):
+    embed = discord.Embed(title='ARNAV', description='Arnav is a new player', color=discord.Color.random())
+
+    await ctx.send(embed=embed)
 
 #MODERATION
 @bot.command()
