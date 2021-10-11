@@ -90,13 +90,6 @@ async def kick(ctx):
 
     await ctx.send(embed=embed)
 
-
-@warn.error
-async def kick_error(error, ctx):
-  if isinstance(error, MissingPermissions):
-      text = "Sorry {}, you do not have permissions to do that!".format(ctx.message.author)
-      await bot.send_message(ctx.message.channel, text)   
-
 @bot.command()
 async def hhgg(ctx):
     embed = discord.Embed(title="SERVER RULES", color=discord.Color.blue())
