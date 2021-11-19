@@ -262,7 +262,7 @@ async def kick_error(ctx, error):
 #BOT ACTVITY STATUS
 @bot.event
 async def on_ready():
-    await bot.change_presence(activity=discord.Activity(type=discord.ActivityType.playing, name="GG SMP S3 | !help"))
+    await bot.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name="Board Exams | !help"))
     print('My Ready is Body.')
 
 bot.run('ODY0OTUzMzc5MjEzNjcyNDU4.YO88mw.TMzGde4mx5tItrZXwE9qIy8p-Vg')
