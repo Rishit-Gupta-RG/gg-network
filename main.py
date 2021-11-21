@@ -263,6 +263,6 @@ async def kick_error(ctx, error):
 @bot.event
 async def on_ready():
     await bot.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name="Board Exams | !help"))
-    print('My Ready is Body.')
+    print('GG is read.')
 
 bot.run('ODY0OTUzMzc5MjEzNjcyNDU4.YO88mw.TMzGde4mx5tItrZXwE9qIy8p-Vg')
