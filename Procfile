@@ -1,1 +1,1 @@
-worker: python main/unusual.py
+worker: python main.py
