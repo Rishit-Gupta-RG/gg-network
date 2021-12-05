@@ -258,6 +258,12 @@ async def kick_error(ctx, error):
 #     if voice.is_playing():
 #         voice.stop()
 #         await ctx.send('Stopping...')
+
+@bot.command(pass_context=True)
+@commands.has_permissions(administrator=True)
+async def nick(ctx, member: discord.Member, nick):
+    await member.edit(nick=nick)
+    await ctx.send(f'Nickname was changed for {member.mention} ')
  
 #BOT ACTVITY STATUS
 @bot.event
