@@ -10,7 +10,7 @@ import time
 import re
 from discord import Webhook, RequestsWebhookAdapter, File
 
-
+from mcstatus import MinecraftServer
 from discord import Member
 from discord.ext.commands import has_permissions, MissingPermissions
 from urllib import parse, request
@@ -75,12 +75,6 @@ async def tag(ctx):
 
     await ctx.send(embed=embed)
 
-@tag.command()
-async def redstone(ctx):
-    embed = discord.Embed(title="Redstone", description= "Here you can find uses of [Redstone](https://minecraft.fandom.com/wiki/Redstone_Dust)")
-
-    await ctx.send(embed=embed)
-
 @help.command()
 async def kick(ctx):
     embed = discord.Embed(title='Kick', description='Kicks a Member from the guild. This command requires **Kick Members** permission to work.', color=discord.Color.dark_red())
@@ -132,13 +126,11 @@ async def serverinfo(ctx):
 
   await ctx.send(embed=embed)
 
+server = MinecraftServer.lookup("RiAKG.aternos.me:34624")
 @bot.command()
 async def check(ctx):
-    embed = discord.Embed(title="Checking Server Status", color=discord.Color.gold())
-    embed.set_author(name=ctx.author.display_name, icon_url=ctx.author.avatar_url)
-    embed.add_field(name="To check status of the server :", value= "Type `?check` to check server staus!")
-
-    await ctx.send(embed=embed)
+    status = server.status()
+    await ctx.send(f"The server has {status.players.online} players")
     
 @bot.command()
 async def youtube(ctx, *, search):
@@ -198,14 +190,6 @@ async def kick_error(ctx, error):
         await bot.send_message(ctx.message.channel, text)
 
 #MUSIC
-# @bot.command()
-# async def join(ctx):
-#     channel = ctx.message.author.voice.channel
-#     voice = get(bot.voice_clients, guild=ctx.guild)
-#     if voice and voice.is_connected():
-#         await voice.move_to(channel)
-#     else:
-#         voice = await channel.connect()
 
 # players = {}
 # # command to play sound from a youtube URL
@@ -268,7 +252,7 @@ async def nick(ctx, member: discord.Member, nick):
 #BOT ACTVITY STATUS
 @bot.event
 async def on_ready():
-    await bot.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name="Bread ends!! | !help"))
+    await bot.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name="Dragon dies | !help"))
     print('GG is read.')
 
 bot.run('ODY0OTUzMzc5MjEzNjcyNDU4.YO88mw.TMzGde4mx5tItrZXwE9qIy8p-Vg')
