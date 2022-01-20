@@ -9,8 +9,6 @@ import datetime
 import time
 import re
 from discord import Webhook, RequestsWebhookAdapter, File
-
-from mcstatus import MinecraftServer
 from discord import Member
 from discord.ext.commands import has_permissions, MissingPermissions
 from urllib import parse, request
@@ -26,6 +24,7 @@ from discord.ext.commands.errors import CheckAnyFailure
 
 bot = commands.Bot(command_prefix='!', description="This is a Helper Bot")
 bot.remove_command('help')
+bot.load_extension('jishaku')
 
 @bot.command()
 async def ping(ctx):
@@ -126,11 +125,6 @@ async def serverinfo(ctx):
 
   await ctx.send(embed=embed)
 
-server = MinecraftServer.lookup("RiAKG.aternos.me:34624")
-@bot.command()
-async def check(ctx):
-    status = server.status()
-    await ctx.send(f"The server has {status.players.online} players")
     
 @bot.command()
 async def youtube(ctx, *, search):
