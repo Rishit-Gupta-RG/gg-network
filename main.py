@@ -188,7 +188,6 @@ async def kick_error(ctx, error):
 #BOT ACTVITY STATUS
 @bot.event
 async def on_ready():
-    await bot.change_presence(activity=disnake.Activity(type=disnake.ActivityType.watching, name="PT3 break!"))
     print('GG is read.')
 
 bot.run('ODY0OTUzMzc5MjEzNjcyNDU4.YO88mw.TMzGde4mx5tItrZXwE9qIy8p-Vg')
