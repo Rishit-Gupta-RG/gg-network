@@ -1,32 +1,32 @@
 from logging import fatal
-import discord
-from discord import channel
-from discord import embeds
-from discord.embeds import Embed
+import disnake
+from disnake import Intents, channel
+from disnake import embeds
+from disnake.embeds import Embed
 import asyncio
-from discord.ext import commands
+from disnake.ext import commands
 import datetime
 import time
 import re
-from discord import Webhook, RequestsWebhookAdapter, File
-from discord import Member
-from discord.ext.commands import has_permissions, MissingPermissions
+from disnake import Member
+from disnake.ext.commands import has_permissions, MissingPermissions
 from urllib import parse, request
-from discord.ext.commands.bot import Bot
-from discord.ext.commands.converter import EmojiConverter
-from discord.ext.commands.core import command
-from discord.utils import get
-from discord import TextChannel
-from youtube_dl import YoutubeDL
+from disnake.ext.commands.bot import Bot
+from disnake.ext.commands.converter import EmojiConverter
+from disnake.ext.commands.core import command
+from disnake.utils import get
+from disnake import TextChannel
 import json
 
-from discord.ext.commands.errors import CheckAnyFailure
+from disnake.ext.commands.errors import CheckAnyFailure
 
-bot = commands.Bot(command_prefix='!', description="This is a Helper Bot")
+intents = disnake.Intents.default()
+intents.presences = True
+intents.members = True
+bot = commands.Bot(test_guilds=[817003562663149578], intents=intents)
 bot.remove_command('help')
-bot.load_extension('jishaku')
 
-@bot.command()
+@bot.slash_command()
 async def ping(ctx):
     before = time.monotonic()
     message = await ctx.send("Pong!")
@@ -34,29 +34,29 @@ async def ping(ctx):
     await message.edit(content=f"Pong!  `{int(ping)}ms`")
 
 #CALCULATOR
-@bot.command() 
+@bot.slash_command() 
 async def add(ctx,a:float, b:float): 
     await ctx.send(f"{a} + {b} = {a+b}") #Adds A and B
 
-@bot.command() 
+@bot.slash_command() 
 async def sub(ctx,a:float,b:float): 
     await ctx.send(f"{a} - {b} = {a-b}") #Subtracts A and B
 
-@bot.command() 
+@bot.slash_command() 
 async def multi(ctx,a:int,b:int): 
     await ctx.send(f"{a} * {b} = {a*b}") #Multplies A and B
 
-@bot.command() 
+@bot.slash_command() 
 async def divide(ctx,a:int,b:int): 
     await ctx.send(f"{a} / {b} = {a/b}") #Divides A and B
 
-@bot.command()
+@bot.slash_command()
 async def square(ctx,a:int):
     await ctx.send(f"{a*a}") #Multilies A by itself
 
-@bot.group(invoke_without_command=True)
+@bot.slash_command()
 async def help(ctx):
-    embed = discord.Embed(title="GG SMP BOT!", description="Hello, I am **GG SMP BOT** made for __GG SMP__ a Minecraft server \n" "Here's the list of available commands", color=discord.Color.purple())
+    embed = disnake.Embed(title="GG SMP BOT!", description="Hello, I am **GG SMP BOT** made for __GG SMP__ a Minecraft server \n" "Here's the list of available commands", color=disnake.Color.purple())
     embed.add_field(name="Information:", value="`serverinfo`,`check`", inline=False)
     embed.add_field(name="Maths:", value="`add`, `sub`, `multi`, `divide`, `square`")
     embed.add_field(name='Other Commands', value="`youtube`", inline=False)
@@ -67,40 +67,33 @@ async def help(ctx):
 
     await ctx.send(embed=embed)
 
-@bot.group(invoke_without_command=True)
-async def tag(ctx):
-    embed = discord.Embed(title="Tag List", description= "Type `!tag <tag_name>` to view that tag", color=discord.Color.dark_gold())
-    embed.add_field(name="Available Tags", value="`redstone`")
-
-    await ctx.send(embed=embed)
-
-@help.command()
+@help.slash_command()
 async def kick(ctx):
-    embed = discord.Embed(title='Kick', description='Kicks a Member from the guild. This command requires **Kick Members** permission to work.', color=discord.Color.dark_red())
+    embed = disnake.Embed(title='Kick', description='Kicks a Member from the guild. This command requires **Kick Members** permission to work.', color=disnake.Color.dark_red())
     embed.add_field(name='Usage', value="`!kick <user>`")
     embed.add_field(name='Aliases', value='Coming soon....')
     embed.add_field(name='Examples', value='!kick @user')
 
     await ctx.send(embed=embed)
 
-@bot.command()
+@bot.slash_command()
 async def hhgg(ctx):
-    embed = discord.Embed(title="SERVER RULES", color=discord.Color.blue())
+    embed = disnake.Embed(title="SERVER RULES", color=disnake.Color.blue())
     embed.add_field(name="Minecraft Server Rules", value="**1.** Don't steal anyone's item or opening someone chest without their permission is not allowed. \n""**2.** Be like a real warrior! Don't attack on someone without making them aware of it.\n""If you don't follow the above point and directly attack then its __responsibility of other players nearby to kill the player who is breaking this rule__.\n""**3.** If someone hits you by mistake then don't hit him back, this leads in a conflict.\n""**4.** Everyone have to contribute in public builds.\n""**5.** Do not damage property of others.\n""**6.** Mass use of **TNT** is strictly prohibited. Even in debris mining make sure you call a metting before going to mine debris with **TNT**.\n""**7.** Make sure you sleep when everyone is sleeping, if you are in a serious condition and can't sleep then leave the server and rejoin.", inline=False)
-    embed.add_field(name="Discord Server Rules", value="There will be no rules in this discord server and no automod. But still don't break the basic rules.", inline=False)
+    embed.add_field(name="Disnakedisnake Server Rules", value="There will be no rules in this disnake server and no automod. But still don't break the basic rules.", inline=False)
     embed.add_field(name="SERVER INFO", value="**Server IP** - `RiAKG.aternos.me`\n""**Port** - `34624`\n", inline=False)
     embed.add_field(name="SERVER FAQ", value="Server is not online for 24/7, You can check staus of server by typing `!check`. If server is offline then you can ask <@&880915882895872080> to turn it back on.", inline=False)
 
     await ctx.send(embed=embed)
 
-@bot.command()
+@bot.slash_command()
 async def about(ctx):
-    embed = discord.Embed(title="GG SMP", description= "Official Bot of GG SMP!", color=discord.Color.red())
+    embed = disnake.Embed(title="GG SMP", description= "Official Bot of GG SMP!", color=disnake.Color.red())
     embed.add_field(name="**Developed by -**", value="Rishit Gupta")
 
     await ctx.send(embed=embed)
 
-@bot.command()
+@bot.slash_command()
 async def serverinfo(ctx):
   name = str(ctx.guild.name)
   description = str(ctx.guild.description)
@@ -112,10 +105,10 @@ async def serverinfo(ctx):
 
   icon = str(ctx.guild.icon_url)
    
-  embed = discord.Embed(
+  embed = disnake.Embed(
       title=name + " Server Information",
       description=description,
-      color=discord.Color.blue()
+      color=disnake.Color.blue()
     )
   embed.set_thumbnail(url=icon)
   embed.add_field(name="Owner", value=owner, inline=True)
@@ -126,7 +119,7 @@ async def serverinfo(ctx):
   await ctx.send(embed=embed)
 
     
-@bot.command()
+@bot.slash_command()
 async def youtube(ctx, *, search):
     query_string = parse.urlencode({'search_query': search})
     html_content = request.urlopen('http://www.youtube.com/results?' + query_string)
@@ -135,47 +128,11 @@ async def youtube(ctx, *, search):
     #print(search_results)
     await ctx.send("Here's what I found" ' ' 'https://www.youtube.com' + search_results[0])
 
-@bot.group(invoke_without_command=True)
-async def member(ctx):
-    embed = discord.Embed(title="SMP Members list", description="**Total Members = 5**\n 1.  <@787149777103486986>\n 2. <@852949635257204776>\n 3. <@727526184161902614>\n 4. <@833916716001001473>\n 5. <@560838833680154624> ", color=discord.Color.orange())
-    embed.set_footer(text="To get more info about a player type !member <Member>")
-
-    await ctx.send(embed=embed)
-
-@member.command(name='Rishit', aliases=['787149777103486986','rishit'])
-async def Rishit(ctx):
-    embed = discord.Embed(title='RISHIT', description= "**Owns -** Castle (UC), Chicken/Sheep farm, Nether wart farm\n **Constructed -** Town hall(O/N), Spider xp farm, Sugarcane farm, Skeleton xp farm (2x)\n **Contributed at -** Villager house, Sugarcane farm", color=discord.Color.random())
-
-    await ctx.send(embed=embed)
-
-@member.command(name='Ronit', aliases=['727526184161902614', 'ronit'])
-async def Ronit(ctx):
-    embed = discord.Embed(title='RONIT', description="**Owns -** House, Garage, Cinema, Library, Automatic Wheat Farm, Horse Stable\n **Constructed -** Wheat farm, Villager house\n **Contributed at -** Sugarcane farm, Villager house", color=discord.Color.random())
-
-    await ctx.send(embed=embed)
-
-@member.command(name='Arpit', aliases=['852949635257204776', 'arpit'])
-async def Arpit(ctx):
-    embed = discord.Embed(title='ARPIT', description='**Owns -** Tower (UC), Potato Farm\n **Constructed -** Villager house, Town hall(N), Skeleton xp farm\n **Contributed at - ** Sugarcane Farm, Villager House', color=discord.Color.random())
-
-    await ctx.send(embed=embed)
-
-@member.command(name='Divynash', aliases=['833916716001001473', 'divyansh'])
-async def Divyansh(ctx):
-    embed = discord.Embed(title='DIVYANSH', description='**Owns -** Among us house\n **Constructed -** Villager house\n **Contributed at -** Sugarcane Farm', color=discord.Color.random())
-
-    await ctx.send(embed=embed)
-
-@member.command(name='Arnav', aliases=['560838833680154624', 'arnob', 'Arnob', 'arnav'])
-async def Arnav(ctx):
-    embed = discord.Embed(title='ARNAV', description='Arnav is a new player', color=discord.Color.random())
-
-    await ctx.send(embed=embed)
 
 #MODERATION
-@bot.command()
+@bot.slash_command()
 @commands.has_permissions(kick_members=True)
-async def kick(ctx, member: discord.Member):
+async def kick(ctx, member: disnake.Member):
     await member.kick()
     await ctx.send(f"**{member.name}** has been kicked by **{ctx.author.name}**!")
 async def kick_error(ctx, error):
@@ -236,17 +193,11 @@ async def kick_error(ctx, error):
 #     if voice.is_playing():
 #         voice.stop()
 #         await ctx.send('Stopping...')
-
-@bot.command(pass_context=True)
-@commands.has_permissions(administrator=True)
-async def nick(ctx, member: discord.Member, nick):
-    await member.edit(nick=nick)
-    await ctx.send(f'Nickname was changed for {member.mention} ')
  
 #BOT ACTVITY STATUS
 @bot.event
 async def on_ready():
-    await bot.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name="Dragon dies | !help"))
+    await bot.change_presence(activity=disnake.Activity(type=disnake.ActivityType.watching, name="PT3 break!"))
     print('GG is read.')
 
 bot.run('ODY0OTUzMzc5MjEzNjcyNDU4.YO88mw.TMzGde4mx5tItrZXwE9qIy8p-Vg')
