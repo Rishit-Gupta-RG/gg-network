@@ -67,15 +67,6 @@ async def help(ctx):
 
     await ctx.send(embed=embed)
 
-@help.slash_command()
-async def kick(ctx):
-    embed = disnake.Embed(title='Kick', description='Kicks a Member from the guild. This command requires **Kick Members** permission to work.', color=disnake.Color.dark_red())
-    embed.add_field(name='Usage', value="`!kick <user>`")
-    embed.add_field(name='Aliases', value='Coming soon....')
-    embed.add_field(name='Examples', value='!kick @user')
-
-    await ctx.send(embed=embed)
-
 @bot.slash_command()
 async def hhgg(ctx):
     embed = disnake.Embed(title="SERVER RULES", color=disnake.Color.blue())
