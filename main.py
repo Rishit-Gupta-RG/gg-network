@@ -23,7 +23,7 @@ from disnake.ext.commands.errors import CheckAnyFailure
 intents = disnake.Intents.default()
 intents.presences = True
 intents.members = True
-bot = commands.Bot(test_guilds=[817003562663149578], intents=intents)
+bot = commands.Bot(command_prefix="!",test_guilds=[817003562663149578], intents=intents)
 bot.remove_command('help')
 
 @bot.slash_command()
@@ -53,6 +53,13 @@ async def divide(ctx,a:int,b:int):
 @bot.slash_command()
 async def square(ctx,a:int):
     await ctx.send(f"{a*a}") #Multilies A by itself
+
+@bot.command()
+async def poll(ctx):
+   embed = disnake.Embed(title="What should we do first?", description="1️⃣ → Unranked Tournament.\n 2️⃣ → Ranked Tournament.", color=ctx.author.color)
+   message = await ctx.send("Hey <@&880915073114177536>, vote for your opinion!",embed=embed)
+   await message.add_reaction('1️⃣')
+   await message.add_reaction('2️⃣')
 
 @bot.slash_command()
 async def help(ctx):
