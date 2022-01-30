@@ -56,10 +56,13 @@ async def square(ctx,a:int):
 
 @bot.command()
 async def poll(ctx):
-   embed = disnake.Embed(title="What should we do first?", description="1️⃣ → Unranked Tournament.\n 2️⃣ → Ranked Tournament.", color=ctx.author.color)
-   message = await ctx.send("Hey <@&880915073114177536>, vote for your opinion!",embed=embed)
-   await message.add_reaction('1️⃣')
-   await message.add_reaction('2️⃣')
+    if ctx.message.author.id == 787149777103486986: 
+        embed = disnake.Embed(title="What should we do first?", description="1️⃣ → Unranked Tournament.\n 2️⃣ → Ranked Tournament.", color=ctx.author.color)
+        message = await ctx.send("Hey <@&880915073114177536>, vote for your opinion!",embed=embed)
+        await message.add_reaction('1️⃣')
+        await message.add_reaction('2️⃣')
+    else:
+        await ctx.send("❎ You do not have permission to use this command!")
 
 @bot.slash_command()
 async def help(ctx):
