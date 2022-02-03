@@ -23,15 +23,14 @@ from disnake.ext.commands.errors import CheckAnyFailure
 intents = disnake.Intents.default()
 intents.presences = True
 intents.members = True
-bot = commands.Bot(command_prefix="!",test_guilds=[817003562663149578], intents=intents)
+bot = commands.InteractionBot(test_guilds=[817003562663149578], intents=intents)
 bot.remove_command('help')
 
 @bot.slash_command()
 async def ping(ctx):
     before = time.monotonic()
-    message = await ctx.send("Pong!")
     ping = (time.monotonic() - before) * 1000
-    await message.edit(content=f"Pong!  `{int(ping)}ms`")
+    await ctx.send(f"Pong!  `{int(ping)}ms`")
 
 #CALCULATOR
 @bot.slash_command() 
@@ -54,15 +53,6 @@ async def divide(ctx,a:int,b:int):
 async def square(ctx,a:int):
     await ctx.send(f"{a*a}") #Multilies A by itself
 
-@bot.command()
-async def poll(ctx):
-    if ctx.message.author.id == 787149777103486986: 
-        embed = disnake.Embed(title="What should we do first?", description="1️⃣ → Unranked Tournament.\n 2️⃣ → Ranked Tournament.", color=ctx.author.color)
-        message = await ctx.send("Hey <@&880915073114177536>, vote for your opinion!",embed=embed)
-        await message.add_reaction('1️⃣')
-        await message.add_reaction('2️⃣')
-    else:
-        await ctx.send("❎ You do not have permission to use this command!")
 
 @bot.slash_command()
 async def help(ctx):
