@@ -23,7 +23,7 @@ from disnake.ext.commands.errors import CheckAnyFailure
 intents = disnake.Intents.default()
 intents.presences = True
 intents.members = True
-bot = commands.InteractionBot(test_guilds=[817003562663149578], intents=intents))
+bot = commands.InteractionBot(test_guilds=[817003562663149578], intents=intents)
 
 @bot.slash_command()
 async def ping(ctx):
