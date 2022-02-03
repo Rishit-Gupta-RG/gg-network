@@ -59,12 +59,9 @@ async def square(ctx,a:int):
 async def check(ctx):
     server = MinecraftBedrockServer.lookup("RiAKG.aternos.me:34624")
     status = server.status()
-    if status.players_max != 1:
-        smpstatus = "🟢 online"
-    else:
-        smpstatus = "🔴 offline"
-    embed = disnake.Embed(title="Status of GG SMP", description=f"🟢 Server is {smpstatus}\n\n **Edition -** Bedrock\n **Version -** `1.18`\n **Status -** {smpstatus}\n **Players in game -** `{status.players_online}`\n **Maximum Players -** `20`")
+    embed = disnake.Embed(title="Status of GG SMP", description=f" **Edition -** Bedrock\n **Version -** `1.18`\n **Players in game -** `{status.players_online}`\n **Maximum Players -** {status.players_max}")
     embed.set_thumbnail(url="https://media.discordapp.net/attachments/885185426741141504/921090028204085268/sjhnjkdbc.gif")
+    embed.set_footer(text="Note - If Max players = 0 → Server is offline\n If Max players = 20 → Server is online")
     await ctx.send(embed=embed)
 
 @bot.slash_command()
