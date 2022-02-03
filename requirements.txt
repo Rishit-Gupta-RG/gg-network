@@ -1,4 +1,8 @@
 discord.py==1.7.3
 PyNaCl==1.4.0
 disnake==2.3.0
+<<<<<<< HEAD
 mcstatus==8.0.0
+=======
+mcstatus==8.0.0
+>>>>>>> 746c85923771a7241fd7af20947e73943e8e6150
