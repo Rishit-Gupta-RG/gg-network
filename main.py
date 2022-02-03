@@ -26,11 +26,13 @@ intents.presences = True
 intents.members = True
 bot = commands.Bot(command_prefix="!",test_guilds=[817003562663149578], intents=intents)
 
-@bot.slash_command()
+@bot.command()
 async def ping(ctx):
     before = time.monotonic()
+    message = await ctx.send("Pong!")
     ping = (time.monotonic() - before) * 1000
-    await ctx.send(f"Pong!  `{int(ping)}ms`")
+    await message.edit(content=f"Pong!  `{int(ping)}ms`")
+
 
 #CALCULATOR
 @bot.slash_command() 
@@ -59,6 +61,16 @@ async def ping(ctx):
     status = server.status()
     await ctx.send(f"The server has {status.players_online} players online and replied in {status.latency} ms")
 
+@bot.command()
+async def check(ctx):
+    server = MinecraftBedrockServer.lookup("RiAKG.aternos.me:34624")
+    status = server.status()
+    if status.players_max == 20:
+       embed = disnake.Embed(title="Status of GG SMP", description=f"🟢 Server is online\n\n **Edition -** Bedrock\n **Version -** `1.18`\n **Status -** 🟢 Online\n **Players in game -** `{status.players_online}`\n **Maximum Players -** `20`")
+       embed.set_thumbnail(url="https://media.discordapp.net/attachments/885185426741141504/921090028204085268/sjhnjkdbc.gif")
+       await ctx.send(embed=embed)
+    else:
+        await ctx.send("🔴 Server is offline.")
 
 @bot.slash_command()
 async def help(ctx):
