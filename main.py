@@ -7,6 +7,7 @@ import asyncio
 from disnake.ext import commands
 import datetime
 import time
+import os
 import re
 from disnake import Member
 from disnake.ext.commands import has_permissions, MissingPermissions
@@ -18,6 +19,8 @@ from disnake.utils import get
 from disnake import TextChannel
 import json
 from mcstatus import MinecraftBedrockServer
+from dotenv import load_dotenv
+load_dotenv()
 
 from disnake.ext.commands.errors import CheckAnyFailure
 
@@ -200,4 +203,4 @@ async def kick_error(ctx, error):
 async def on_ready():
     print('GG is read.')
 
-bot.run('ODY0OTUzMzc5MjEzNjcyNDU4.YO88mw.TMzGde4mx5tItrZXwE9qIy8p-Vg')
+bot.run(os.getenv('TOKEN'))
