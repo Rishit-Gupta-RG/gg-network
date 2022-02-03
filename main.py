@@ -56,12 +56,6 @@ async def square(ctx,a:int):
     await ctx.send(f"{a*a}") #Multilies A by itself
 
 @bot.command()
-async def ping(ctx):
-    server = MinecraftBedrockServer.lookup("RiAKG.aternos.me:34624")
-    status = server.status()
-    await ctx.send(f"The server has {status.players_online} players online and replied in {status.latency} ms")
-
-@bot.command()
 async def check(ctx):
     server = MinecraftBedrockServer.lookup("RiAKG.aternos.me:34624")
     status = server.status()
