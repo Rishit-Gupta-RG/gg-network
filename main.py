@@ -201,6 +201,6 @@ async def kick_error(ctx, error):
 #BOT ACTVITY STATUS
 @bot.event
 async def on_ready():
-    print('GG is read.')
+    print('GG is ready.')
 
 bot.run(os.getenv('TOKEN'))
