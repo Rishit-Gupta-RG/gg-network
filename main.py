@@ -59,7 +59,7 @@ async def square(ctx,a:int):
 async def check(ctx):
     server = MinecraftBedrockServer.lookup("RiAKG.aternos.me:34624")
     status = server.status()
-    if status.players_max > 1:
+    if status.players_max != 1:
         smpstatus = "🟢 online"
     else:
         smpstatus = "🔴 offline"
