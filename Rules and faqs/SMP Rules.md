@@ -1,4 +1,4 @@
-#SMP RULES
+# SMP RULES
 
 1. Don't steal items of others or opening someone's chest without their permission is not allowed.
 2. Don't attack on someone without making them aware of it. If you don't follow the this point and directly attack then its responsibility of other players nearby to kill the player who is breaking this rule.
