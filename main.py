@@ -1,7 +1,6 @@
 import imp
 from logging import fatal
 from socket import CAN_BCM_TX_ANNOUNCE
-from turtle import color
 import disnake
 from disnake import Intents, channel
 from disnake import embeds
