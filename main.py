@@ -1,4 +1,7 @@
+import imp
 from logging import fatal
+from socket import CAN_BCM_TX_ANNOUNCE
+from turtle import color
 import disnake
 from disnake import Intents, channel
 from disnake import embeds
@@ -17,6 +20,8 @@ from disnake.ext.commands.converter import EmojiConverter
 from disnake.ext.commands.core import command
 from disnake.utils import get
 from disnake import TextChannel
+from disnake import ui
+from disnake.ext import menus
 import json
 from mcstatus import MinecraftBedrockServer
 from dotenv import load_dotenv
@@ -27,7 +32,42 @@ from disnake.ext.commands.errors import CheckAnyFailure
 intents = disnake.Intents.default()
 intents.presences = True
 intents.members = True
-bot = commands.Bot(command_prefix="!",test_guilds=[817003562663149578], intents=intents)
+intents.messages = True
+
+class MyHelp(commands.HelpCommand):
+   def get_command_signature(ctx, command):
+        return '%s%s %s' % (ctx.clean_prefix, command.qualified_name, command.signature)
+async def send_bot_help(ctx, mapping):
+        embed = disnake.Embed(title="Help", color=ctx.author.color)
+        for cog, commands in mapping.items():
+           filtered = await ctx.filter_commands(commands, sort=True)
+           command_signatures = [ctx.get_command_signature(c) for c in filtered]
+           if command_signatures:
+                cog_name = getattr(cog, "qualified_name", "No Category")
+                embed.add_field(name=cog_name, value="\n".join(command_signatures), inline=False)
+
+        channel = ctx.get_destination()
+        await channel.send(embed=embed)
+
+class MyHelp(commands.MinimalHelpCommand):
+    async def send_command_help(ctx, command):
+        embed = disnake.Embed(title=ctx.get_command_signature(command), color=ctx.author.color)
+        embed.add_field(name="Help", value=command.help)
+        alias = command.aliases
+        usage = command.usage
+        description = command.description
+        if description:
+            embed.add_field(name="Description", value=", ".join(description), inline=False)
+        elif alias:
+            embed.add_field(name="Aliases", value=", ".join(alias), inline=False)
+        elif usage:
+            embed.add_field(name="Usage", value=", ".join(usage), inline=False)
+
+
+        channel = ctx.get_destination()
+        await channel.send(embed=embed)
+
+bot = commands.Bot(command_prefix="!",test_guilds=[817003562663149578], intents=intents, case_insensitive=True, help_command=MyHelp)
 
 @bot.command()
 async def ping(ctx):
@@ -67,18 +107,6 @@ async def check(ctx):
     embed.set_footer(text="If Max players = 0 → Server is offline\nIf Max players = 20 → Server is online")
     await ctx.send(embed=embed)
 
-@bot.slash_command()
-async def help(ctx):
-    embed = disnake.Embed(title="GG SMP BOT!", description="Hello, I am **GG SMP BOT** made for __GG SMP__ a Minecraft server \n" "Here's the list of available commands", color=disnake.Color.purple())
-    embed.add_field(name="Information:", value="`serverinfo`,`check`", inline=False)
-    embed.add_field(name="Maths:", value="`add`, `sub`, `multi`, `divide`, `square`")
-    embed.add_field(name='Other Commands', value="`youtube`", inline=False)
-    embed.add_field(name="Moderation:", value="`kick`", inline=False)
-    embed.add_field(name="Utilities:", value="`about`, `ping`", inline=False)
-    
-    embed.set_footer(text="My prefix in this guild !, More commands will be added soon ;)")
-
-    await ctx.send(embed=embed)
 
 @bot.slash_command()
 async def hhgg(ctx):
@@ -134,7 +162,7 @@ async def youtube(ctx, *, search):
 
 
 #MODERATION
-@bot.slash_command()
+@bot.command()
 @commands.has_permissions(kick_members=True)
 async def kick(ctx, member: disnake.Member):
     await member.kick()
@@ -144,61 +172,6 @@ async def kick_error(ctx, error):
         text = "Sorry {}, you do not have permissions to do that!".format(ctx.message.author)
         await bot.send_message(ctx.message.channel, text)
 
-#MUSIC
-
-# players = {}
-# # command to play sound from a youtube URL
-# @bot.command()
-# async def play(ctx, url):
-#     YDL_OPTIONS = {'format': 'bestaudio', 'noplaylist': 'True'}
-#     FFMPEG_OPTIONS = {
-#         'before_options': '-reconnect 1 -reconnect_streamed 1 -reconnect_delay_max 5', 'options': '-vn'}
-#     voice = get(bot.voice_clients, guild=ctx.guild)
-
-#     if voice is not None and not voice.is_playing():
-#         with YoutubeDL(YDL_OPTIONS) as ydl:
-#             info = ydl.extract_info(url, download=False)
-#         URL = info['url']
-#         voice.play(FFmpegPCMAudio(URL, **FFMPEG_OPTIONS))
-#         voice.is_playing()
-#         await ctx.send('Bot is playing')
-
-# # check if the bot is already playing
-#     else:
-#         await ctx.send("Bot is already playing")
-#         return
-
-
-# # command to resume voice if it is paused
-# @bot.command()
-# async def resume(ctx):
-#     voice = get(bot.voice_clients, guild=ctx.guild)
-
-#     if not voice.is_playing():
-#         voice.resume()
-#         await ctx.send('Bot is resuming')
-
-
-# # command to pause voice if it is playing
-# @bot.command()
-# async def pause(ctx):
-#     voice = get(bot.voice_clients, guild=ctx.guild)
-
-#     if voice.is_playing():
-#         voice.pause()
-#         await ctx.send('Bot has been paused')
-
-
-## command to stop voice
-#  @bot.command()
-# async def stop(ctx):
-#     voice = get(bot.voice_clients, guild=ctx.guild)
-
-#     if voice.is_playing():
-#         voice.stop()
-#         await ctx.send('Stopping...')
- 
-#BOT ACTVITY STATUS
 @bot.event
 async def on_ready():
     print('GG is ready.')
