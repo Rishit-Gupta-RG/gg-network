@@ -20,7 +20,6 @@ from disnake.ext.commands.core import command
 from disnake.utils import get
 from disnake import TextChannel
 from disnake import ui
-from disnake.ext import menus
 import json
 from mcstatus import MinecraftBedrockServer
 from dotenv import load_dotenv
@@ -32,41 +31,7 @@ intents = disnake.Intents.default()
 intents.presences = True
 intents.members = True
 intents.messages = True
-
-class MyHelp(commands.HelpCommand):
-   def get_command_signature(ctx, command):
-        return '%s%s %s' % (ctx.clean_prefix, command.qualified_name, command.signature)
-async def send_bot_help(ctx, mapping):
-        embed = disnake.Embed(title="Help", color=ctx.author.color)
-        for cog, commands in mapping.items():
-           filtered = await ctx.filter_commands(commands, sort=True)
-           command_signatures = [ctx.get_command_signature(c) for c in filtered]
-           if command_signatures:
-                cog_name = getattr(cog, "qualified_name", "No Category")
-                embed.add_field(name=cog_name, value="\n".join(command_signatures), inline=False)
-
-        channel = ctx.get_destination()
-        await channel.send(embed=embed)
-
-class MyHelp(commands.MinimalHelpCommand):
-    async def send_command_help(ctx, command):
-        embed = disnake.Embed(title=ctx.get_command_signature(command), color=ctx.author.color)
-        embed.add_field(name="Help", value=command.help)
-        alias = command.aliases
-        usage = command.usage
-        description = command.description
-        if description:
-            embed.add_field(name="Description", value=", ".join(description), inline=False)
-        elif alias:
-            embed.add_field(name="Aliases", value=", ".join(alias), inline=False)
-        elif usage:
-            embed.add_field(name="Usage", value=", ".join(usage), inline=False)
-
-
-        channel = ctx.get_destination()
-        await channel.send(embed=embed)
-
-bot = commands.Bot(command_prefix="!",test_guilds=[817003562663149578], intents=intents, case_insensitive=True, help_command=MyHelp)
+bot = commands.InteractionBot(command_prefix="!",test_guilds=[817003562663149578], intents=intents, case_insensitive=True)
 
 @bot.command()
 async def ping(ctx):
