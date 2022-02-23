@@ -33,12 +33,12 @@ intents.members = True
 intents.messages = True
 bot = commands.InteractionBot(command_prefix="!",test_guilds=[817003562663149578], intents=intents, case_insensitive=True)
 
-@bot.command()
-async def ping(ctx):
-    before = time.monotonic()
-    message = await ctx.send("Pong!")
-    ping = (time.monotonic() - before) * 1000
-    await message.edit(content=f"Pong!  `{int(ping)}ms`")
+# @bot.command()
+# async def ping(ctx):
+#     before = time.monotonic()
+#     message = await ctx.send("Pong!")
+#     ping = (time.monotonic() - before) * 1000
+#     await message.edit(content=f"Pong!  `{int(ping)}ms`")
 
 
 #CALCULATOR
@@ -62,14 +62,14 @@ async def divide(ctx,a:int,b:int):
 async def square(ctx,a:int):
     await ctx.send(f"{a*a}") #Multilies A by itself
 
-@bot.command()
-async def check(ctx):
-    server = MinecraftBedrockServer.lookup("RiAKG.aternos.me:34624")
-    status = server.status()
-    embed = disnake.Embed(title="Status of GG SMP", description=f" **Edition -** `Bedrock`\n **Version -** `1.18`\n **Players in game -** `{status.players_online}`\n **Maximum Players -** `{status.players_max}`", color=ctx.author.color)
-    embed.set_thumbnail(url="https://media.discordapp.net/attachments/885185426741141504/921090028204085268/sjhnjkdbc.gif")
-    embed.set_footer(text="If Max players = 1 → Server is offline 🔴\nIf Max players = 20 → Server is online 🟢")
-    await ctx.send(embed=embed)
+# @bot.command()
+# async def check(ctx):
+#     server = MinecraftBedrockServer.lookup("RiAKG.aternos.me:34624")
+#     status = server.status()
+#     embed = disnake.Embed(title="Status of GG SMP", description=f" **Edition -** `Bedrock`\n **Version -** `1.18`\n **Players in game -** `{status.players_online}`\n **Maximum Players -** `{status.players_max}`", color=ctx.author.color)
+#     embed.set_thumbnail(url="https://media.discordapp.net/attachments/885185426741141504/921090028204085268/sjhnjkdbc.gif")
+#     embed.set_footer(text="If Max players = 1 → Server is offline 🔴\nIf Max players = 20 → Server is online 🟢")
+#     await ctx.send(embed=embed)
 
 
 @bot.slash_command()
@@ -126,15 +126,15 @@ async def youtube(ctx, *, search):
 
 
 #MODERATION
-@bot.command()
-@commands.has_permissions(kick_members=True)
-async def kick(ctx, member: disnake.Member):
-    await member.kick()
-    await ctx.send(f"**{member.name}** has been kicked by **{ctx.author.name}**!")
-async def kick_error(ctx, error):
-    if isinstance(error, MissingPermissions):
-        text = "Sorry {}, you do not have permissions to do that!".format(ctx.message.author)
-        await bot.send_message(ctx.message.channel, text)
+# @bot.command()
+# @commands.has_permissions(kick_members=True)
+# async def kick(ctx, member: disnake.Member):
+#     await member.kick()
+#     await ctx.send(f"**{member.name}** has been kicked by **{ctx.author.name}**!")
+# async def kick_error(ctx, error):
+#     if isinstance(error, MissingPermissions):
+#         text = "Sorry {}, you do not have permissions to do that!".format(ctx.message.author)
+#         await bot.send_message(ctx.message.channel, text)
 
 @bot.event
 async def on_ready():
