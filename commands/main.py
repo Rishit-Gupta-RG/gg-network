@@ -20,6 +20,7 @@ from disnake.ext.commands.core import command
 from disnake.utils import get
 from disnake import TextChannel
 from disnake import ui
+import sys, traceback
 import json
 from mcstatus import MinecraftBedrockServer
 from dotenv import load_dotenv
