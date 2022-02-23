@@ -42,23 +42,23 @@ bot = commands.InteractionBot(command_prefix="!",test_guilds=[817003562663149578
 
 
 #CALCULATOR
-@bot.slash_command() 
+@bot.slash_command(description="Adds two numbers.") 
 async def add(ctx,a:float, b:float): 
     await ctx.send(f"{a} + {b} = {a+b}") #Adds A and B
 
-@bot.slash_command() 
+@bot.slash_command(description="Subtracts two numbers.") 
 async def sub(ctx,a:float,b:float): 
     await ctx.send(f"{a} - {b} = {a-b}") #Subtracts A and B
 
-@bot.slash_command() 
+@bot.slash_command(description="Multiplies two numbers.") 
 async def multi(ctx,a:int,b:int): 
     await ctx.send(f"{a} * {b} = {a*b}") #Multplies A and B
 
-@bot.slash_command() 
+@bot.slash_command(description="Divides two numbers.") 
 async def divide(ctx,a:int,b:int): 
     await ctx.send(f"{a} / {b} = {a/b}") #Divides A and B
 
-@bot.slash_command()
+@bot.slash_command(description="Find the square of a number.")
 async def square(ctx,a:int):
     await ctx.send(f"{a*a}") #Multilies A by itself
 
@@ -72,7 +72,7 @@ async def square(ctx,a:int):
 #     await ctx.send(embed=embed)
 
 
-@bot.slash_command()
+@bot.slash_command(description="Monke")
 async def hhgg(ctx):
     embed = disnake.Embed(title="SERVER RULES", color=disnake.Color.blue())
     embed.add_field(name="Minecraft Server Rules", value="**1.** Don't steal anyone's item or opening someone chest without their permission is not allowed. \n""**2.** Be like a real warrior! Don't attack on someone without making them aware of it.\n""If you don't follow the above point and directly attack then its __responsibility of other players nearby to kill the player who is breaking this rule__.\n""**3.** If someone hits you by mistake then don't hit him back, this leads in a conflict.\n""**4.** Everyone have to contribute in public builds.\n""**5.** Do not damage property of others.\n""**6.** Mass use of **TNT** is strictly prohibited. Even in debris mining make sure you call a metting before going to mine debris with **TNT**.\n""**7.** Make sure you sleep when everyone is sleeping, if you are in a serious condition and can't sleep then leave the server and rejoin.", inline=False)
@@ -82,14 +82,14 @@ async def hhgg(ctx):
 
     await ctx.send(embed=embed)
 
-@bot.slash_command()
+@bot.slash_command(description="About me.")
 async def about(ctx):
     embed = disnake.Embed(title="GG SMP", description= "Official Bot of GG SMP!", color=disnake.Color.red())
     embed.add_field(name="**Developed by -**", value="Rishit Gupta")
 
     await ctx.send(embed=embed)
 
-@bot.slash_command()
+@bot.slash_command(description="Shows server information.")
 async def serverinfo(ctx):
   name = str(ctx.guild.name)
   description = str(ctx.guild.description)
@@ -115,7 +115,7 @@ async def serverinfo(ctx):
   await ctx.send(embed=embed)
 
     
-@bot.slash_command()
+@bot.slash_command(description="Seached on youtube for a given query.")
 async def youtube(ctx, *, search):
     query_string = parse.urlencode({'search_query': search})
     html_content = request.urlopen('http://www.youtube.com/results?' + query_string)
