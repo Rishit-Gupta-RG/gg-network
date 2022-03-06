@@ -2,7 +2,7 @@ import imp
 from logging import fatal
 from socket import CAN_BCM_TX_ANNOUNCE
 import disnake
-from disnake import Intents, channel
+from disnake import AllowedMentions, Intents, channel
 from disnake import embeds
 from disnake.embeds import Embed
 import asyncio
@@ -22,7 +22,10 @@ from disnake import TextChannel
 from disnake import ui
 import sys, traceback
 import json
+
+from psutil import users
 from mcstatus import MinecraftBedrockServer
+from pretty_help import PrettyHelp
 from dotenv import load_dotenv
 load_dotenv()
 
@@ -32,7 +35,9 @@ intents = disnake.Intents.default()
 intents.presences = True
 intents.members = True
 intents.messages = True
-bot = commands.Bot(command_prefix="!",test_guilds=[817003562663149578], intents=intents, case_insensitive=True)
+menu = DefaultMenu(page_left="🔼", page_right="🔽", remove="⏹", active_time=15)
+bot = commands.Bot(command_prefix="!",test_guilds=[817003562663149578], intents=intents, case_insensitive=True, help_command=PrettyHelp(menu=menu))
+
 
 initial_extensions = ['cogs.moderation']
 
