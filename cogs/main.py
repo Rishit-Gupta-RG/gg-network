@@ -36,7 +36,8 @@ intents.presences = True
 intents.members = True
 intents.messages = True
 menu = DefaultMenu(page_left="🔼", page_right="🔽", remove="⏹", active_time=15)
-bot = commands.Bot(command_prefix="!",test_guilds=[817003562663149578], intents=intents, case_insensitive=True, help_command=PrettyHelp(menu=menu))
+bot = commands.Bot(command_prefix="!",test_guilds=[817003562663149578], intents=intents, case_insensitive=True)
+bot.help_command=PrettyHelp(menu=menu)
 
 
 initial_extensions = ['cogs.moderation']
