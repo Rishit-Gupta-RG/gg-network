@@ -23,6 +23,7 @@ from disnake import ui
 import sys, traceback
 import json
 import io
+import contextlib
 from psutil import users
 from mcstatus import MinecraftBedrockServer
 from dotenv import load_dotenv
@@ -49,8 +50,8 @@ async def evaluate(ctx, *, code):
         with contextlib.redirect_stdout(str_obj):
             exec(code)
     except Exception as e:
-        return await ctx.send(f"\`\`\`{e.__class__.__name__}: {e}\`\`\`")
-    await ctx.send(f'\`\`\`{str_obj.getvalue()}\`\`\`')
+        return await ctx.send(f"```{e.__class__.__name__}: {e}```")
+    await ctx.send(f'```{str_obj.getvalue()}```')
         
 # @bot.command()
 # async def ping(ctx):
