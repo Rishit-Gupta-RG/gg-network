@@ -42,6 +42,16 @@ if __name__ == '__main__':
     for extension in initial_extensions:
         bot.load_extension(extension)
 
+@bot.command()
+async def evaluate(ctx, *, code):
+    str_obj = io.StringIO()
+    try:
+        with contextlib.redirect_stdout(str_obj):
+            exec(code)
+    except Exception as e:
+        return await ctx.send(f"\`\`\`{e.__class__.__name__}: {e}\`\`\`")
+    await ctx.send(f'\`\`\`{str_obj.getvalue()}\`\`\`')
+        
 # @bot.command()
 # async def ping(ctx):
 #     before = time.monotonic()
