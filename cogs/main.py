@@ -25,7 +25,6 @@ import json
 
 from psutil import users
 from mcstatus import MinecraftBedrockServer
-from pretty_help import DefaultMenu, PrettyHelp
 from dotenv import load_dotenv
 load_dotenv()
 
@@ -35,10 +34,7 @@ intents = disnake.Intents.default()
 intents.presences = True
 intents.members = True
 intents.messages = True
-menu = DefaultMenu(page_left="🔼", page_right="🔽", remove="⏹", active_time=15)
 bot = commands.Bot(command_prefix="!",test_guilds=[817003562663149578], intents=intents, case_insensitive=True)
-bot.help_command=PrettyHelp(menu=menu)
-
 
 initial_extensions = ['cogs.moderation']
 
