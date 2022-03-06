@@ -25,7 +25,7 @@ import json
 
 from psutil import users
 from mcstatus import MinecraftBedrockServer
-from pretty_help import PrettyHelp
+from pretty_help import DefaultMenu, PrettyHelp
 from dotenv import load_dotenv
 load_dotenv()
 
