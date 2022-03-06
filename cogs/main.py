@@ -22,7 +22,7 @@ from disnake import TextChannel
 from disnake import ui
 import sys, traceback
 import json
-
+import io
 from psutil import users
 from mcstatus import MinecraftBedrockServer
 from dotenv import load_dotenv
