@@ -11,7 +11,7 @@ import random
 class Minecraft(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
-    @commands.command(name="check", description="Checks status for GG Network", breif="Want to check whether the server is online or not? just type the command an you'll get some information.", enabled=True, timestamp=datetime.datetime)
+    @commands.command(name="check", description="Checks status for GG Network", breif="Want to check whether the server is online or not? just type the command an you'll get some information.", enabled=True, timestamp=datetime.datetime.utcnow())
     async def check(self, ctx):
         server = MinecraftBedrockServer.lookup("ggnetworkk.aternos.me:34624")
         status = server.status()
