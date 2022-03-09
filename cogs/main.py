@@ -1,4 +1,3 @@
-import imp
 from logging import fatal
 from socket import CAN_BCM_TX_ANNOUNCE
 import disnake
@@ -22,8 +21,7 @@ from disnake import TextChannel
 from disnake import ui
 import sys, traceback
 import json
-import io
-import contextlib
+
 from psutil import users
 from mcstatus import MinecraftBedrockServer
 from dotenv import load_dotenv
@@ -36,23 +34,14 @@ intents.presences = True
 intents.members = True
 intents.messages = True
 bot = commands.Bot(command_prefix="!",test_guilds=[817003562663149578], intents=intents, case_insensitive=True)
+disnake.AllowedMentions(users=False)
 
-initial_extensions = ['cogs.moderation']
+initial_extensions = ['cogs.moderation', 'cogs.minecraft']
 
 if __name__ == '__main__':
     for extension in initial_extensions:
         bot.load_extension(extension)
 
-@bot.command()
-async def evaluate(ctx, *, code):
-    str_obj = io.StringIO()
-    try:
-        with contextlib.redirect_stdout(str_obj):
-            exec(code)
-    except Exception as e:
-        return await ctx.send(f"```{e.__class__.__name__}: {e}```")
-    await ctx.send(f'```{str_obj.getvalue()}```')
-        
 # @bot.command()
 # async def ping(ctx):
 #     before = time.monotonic()
