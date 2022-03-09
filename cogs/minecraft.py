@@ -1,6 +1,5 @@
 from datetime import datetime
 from sqlite3 import Timestamp
-from turtle import title
 from unicodedata import name
 from mcstatus import MinecraftBedrockServer
 import disnake
