@@ -31,7 +31,7 @@ class Moderation(commands.Cog):
         await ctx.send(embed=embed)
 
     @commands.command(name="timeout", description="Timeouts a member.", help="Timeouts a member in the server, you can also set a reason which will show in audit logs.", brief="Timeouts a member.", usage="\nUsage:\n!timeout <member> <duration> [reason]\n\nExamples:\n!timeout @Ronit 10m posting cringe\n!timeout @Sanskar 10h", aliases=['mute', 'to'], enabled=True)
-    @commands.check_any(commands.has_role(930527570800287804), commands.is_owner(), commands.has_permissions(timeout_members=True), commands.has_permissions(administrator=True))
+    @commands.check_any(commands.has_role(930527570800287804), commands.is_owner(), commands.has_permissions(manage_nicknames=True), commands.has_permissions(administrator=True))
     async def my_timeout_command(self, ctx, member: disnake.Member, duration,*,reason: str=None) -> None:
         time_convert = {'s': 1 , 'm' : 60 , 'h' : 3600 , 'd' : 86400, 'S' : 1, 'M' : 60, 'H' : 3600, "D" : 86400}
         timeout_time = float(duration[0:len(duration)-1]) * time_convert[duration[-1]]
