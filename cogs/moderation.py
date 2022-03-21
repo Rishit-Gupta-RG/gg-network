@@ -59,7 +59,7 @@ class Moderation(commands.Cog):
                 await ctx.guild.unban(user)
                 await ctx.send(f"Unbanned {member}.")
     
-    @commands.command(name='rto', description="Removes timeout from a member.",help='Removes timeout from a member if they were timedout in past, optionally you can also set a reason which will show in audit logs.', brief="Removes Timeout.", usage="\nUsage:\n!rto <member> [reason]\n\nExamples:\n!rto @Arpit Ok don't repeat\n!rto @Ronit", aliases=['rto', 'remove-timeout', 'unmute', 'um', 'untimeout'], enabled=True)
+    @commands.command(name='Remove-timeout', description="Removes timeout from a member.",help='Removes timeout from a member if they were timedout in past, optionally you can also set a reason which will show in audit logs.', brief="Removes Timeout.", usage="\nUsage:\n!rto <member> [reason]\n\nExamples:\n!rto @Arpit Ok don't repeat\n!rto @Ronit", aliases=['rto', 'remove-timeout', 'unmute', 'um', 'untimeout'], enabled=True)
     @commands.check_any(commands.has_role(930527570800287804), commands.is_owner(), commands.has_permissions(manage_nicknames=True), commands.has_permissions(administrator=True))
     async def my_remove_timeout_command(self, ctx, member: disnake.Member,*, reason: str=None) -> None:
         await member.timeout(duration=None, reason=reason)
