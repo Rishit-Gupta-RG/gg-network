@@ -118,6 +118,6 @@ async def youtube(ctx, *, search):
 @bot.event
 async def on_ready():
     print('GG is ready.')
-    bot.add_view(view=Refresh)
+    bot.add_view(view=Refresh())
 
 bot.run(os.getenv('TOKEN'))
