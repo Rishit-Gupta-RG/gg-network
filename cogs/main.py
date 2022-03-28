@@ -38,6 +38,9 @@ intents.messages = True
 bot = commands.Bot(command_prefix="!",test_guilds=[817003562663149578], intents=intents, case_insensitive=True)
 disnake.AllowedMentions(users=False)
 
+#VARIABLES
+edition = "`1.18.12`"
+
 initial_extensions = ['cogs.minecraft']
 
 if __name__ == '__main__':
