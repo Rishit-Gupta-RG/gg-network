@@ -61,7 +61,7 @@ class Refresh(disnake.ui.View):
         await interaction.response.send_message("Refreshing", ephemeral=True)
         self.value = True
         self.stop()
-server = MinecraftBedrockServer.lookup("ggnetworkk.aternos.me:34624")
+server = BedrockServer.lookup("ggnetworkk.aternos.me:34624")
 status = server.status()
 
 @bot.command(hidden=True, description='deploys status checker.')
