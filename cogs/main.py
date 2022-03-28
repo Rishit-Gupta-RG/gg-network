@@ -71,7 +71,7 @@ async def deploy(ctx):
     off.set_footer(icon_url=ctx.guild.icon, text=ctx.guild.name)
     msg = await ctx.send(embed=off, view=view)
     await view.wait()
-    if status.players_max == "1":
+    if status.players_max == 1:
         await msg.edit_original_message(embed=off)
     else:
         await msg.edit_original_message("Server is on.")

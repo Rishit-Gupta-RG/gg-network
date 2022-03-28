@@ -15,7 +15,7 @@ class Minecraft(commands.Cog):
     async def check(self, ctx):
         server = BedrockServer.lookup("ggnetworkk.aternos.me:34624")
         status = server.status()
-        if status.players_max == '1':
+        if status.players_max == 1:
             off = disnake.Embed(title="Status for GG Network", description="Oh! no the server is offline \🔴\n\n Do you want to play now? Turn it on thorugh [Aternos Dashboard](https://aternos.org/server/) or ask someone with <@&880915882895872080> role to turn it on.", color=ctx.author.color, timestamp=datetime.utcnow())
             off.set_footer(icon_url=ctx.guild.icon, text=ctx.guild.name)
             await ctx.send(embed=off)
