@@ -37,7 +37,7 @@ intents.messages = True
 bot = commands.Bot(command_prefix="!",test_guilds=[817003562663149578], intents=intents, case_insensitive=True)
 disnake.AllowedMentions(users=False)
 
-initial_extensions = ['cogs.moderation', 'cogs.minecraft', 'cogs.roles']
+initial_extensions = ['cogs.minecraft']
 
 if __name__ == '__main__':
     for extension in initial_extensions:
