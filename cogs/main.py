@@ -1,3 +1,4 @@
+from cgitb import text
 from logging import fatal
 from socket import CAN_BCM_TX_ANNOUNCE
 import disnake
@@ -55,16 +56,24 @@ class Refresh(disnake.ui.View):
         super().__init__(timeout=None,)
         self.value = None
     
-    @disnake.ui.button(label="Refresh", style=disnake.ButtonStyle.green, emoji='🔃', custom_id='refbutton')
+    @disnake.ui.button(label="Refresh", style=disnake.ButtonStyle.blurple, emoji='🔃', custom_id='refbutton')
     async def confirm(self, button: disnake.ui.Button, interaction: disnake.MessageInteraction):
-        await interaction.response.send_message("Refreshing", ephemeral=True)
+        await interaction.response.send_message("Refreshing 🔃", ephemeral=True)
         self.value = True
         server = BedrockServer.lookup("ggnetworkk.aternos.me:34624")
         status = server.status()
         if status.players_max == 1:
-            await interaction.message.edit(content='offline')
+            off = disnake.Embed(title="GG Network status panel.", description="**Status -** Offline :red_circle:\n\nDo you want to play now? Turn it on thorugh [Aternos Dashboard](https://aternos.org/server/) or ask someone with <@&880915882895872080> role to turn it on.", color=0xf80000)
+            off.set_thumbnail(url='https://cdn.discordapp.com/icons/817003562663149578/a_427636e6c26d830bbcc36969a9e83608.gif?size=4096')
+            off.set_author(icon_url='https://cdn.discordapp.com/icons/817003562663149578/a_427636e6c26d830bbcc36969a9e83608.gif?size=4096', name='ggnetwork.aternos.me:34624')
+            off.set_footer(text='Click on the refresh button below to refresh the status.')
+            await interaction.message.edit(embed=off)
         else:
-            await interaction.message.edit(content='online')
+            on = disnake.Embed(title="GG Network status panel.", description=f"**Status -** Online :green_circle:\n\n**Online Players-** `{status.players_online}`\n**Max. Players -** `{status.players_max}`\n**Edition -** {edition}\n**Ping -** `{int(status.latency*100)}ms`", color=0x3cff00)
+            on.set_thumbnail(url='https://cdn.discordapp.com/icons/817003562663149578/a_427636e6c26d830bbcc36969a9e83608.gif?size=4096')
+            on.set_footer(text='Click on the refresh button below to refresh the status.')
+            on.set_author(icon_url='https://cdn.discordapp.com/icons/817003562663149578/a_427636e6c26d830bbcc36969a9e83608.gif?size=4096', name='ggnetwork.aternos.me:34624')
+            await interaction.message.edit(embed=on)
     
 
 @bot.command(hidden=True, description='deploys status checker.')
