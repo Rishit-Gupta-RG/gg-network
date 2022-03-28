@@ -67,7 +67,7 @@ status = server.status()
 @bot.command(hidden=True, description='deploys status checker.')
 async def deploy(ctx):
     view = Refresh()
-    off = disnake.Embed(title="Status for GG Network", description="Oh! no the server is offline \🔴\n\n Do you want to play now? Turn it on thorugh [Aternos Dashboard](https://aternos.org/server/) or ask someone with <@&880915882895872080> role to turn it on.", color=ctx.author.color, timestamp=datetime.utcnow())
+    off = disnake.Embed(title="Status for GG Network", description="Oh! no the server is offline \🔴\n\n Do you want to play now? Turn it on thorugh [Aternos Dashboard](https://aternos.org/server/) or ask someone with <@&880915882895872080> role to turn it on.", color=ctx.author.color)
     off.set_footer(icon_url=ctx.guild.icon, text=ctx.guild.name)
     msg = await ctx.send(embed=off, view=view)
     await view.wait()
