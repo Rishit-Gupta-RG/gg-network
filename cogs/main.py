@@ -60,7 +60,6 @@ class Refresh(disnake.ui.View):
     async def confirm(self, button: disnake.ui.Button, interaction: disnake.MessageInteraction):
         await interaction.response.send_message("Refreshing", ephemeral=True)
         self.value = True
-        self.stop()
 server = BedrockServer.lookup("ggnetworkk.aternos.me:34624")
 status = server.status()
 
