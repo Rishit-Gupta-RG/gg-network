@@ -52,10 +52,10 @@ async def ping(ctx):
 
 class Refresh(disnake.ui.View):
     def __init__(self):
-        super().__init__()
+        super().__init__(timeout=None,)
         self.value = None
     
-    @disnake.ui.button(label="Refresh", style=disnake.ButtonStyle.green, emoji='🔃')
+    @disnake.ui.button(label="Refresh", style=disnake.ButtonStyle.green, emoji='🔃', custom_id='refbutton')
     async def confirm(self, button: disnake.ui.Button, interaction: disnake.MessageInteraction):
         await interaction.response.send_message("Refreshing", ephemeral=True)
         self.value = True
@@ -73,7 +73,7 @@ async def deploy(ctx):
     off = disnake.Embed(title="Status for GG Network", description="Oh! no the server is offline \🔴\n\n Do you want to play now? Turn it on thorugh [Aternos Dashboard](https://aternos.org/server/) or ask someone with <@&880915882895872080> role to turn it on.", color=ctx.author.color)
     off.set_footer(icon_url=ctx.guild.icon, text=ctx.guild.name)
     await ctx.send(embed=off, view=view)
-    
+
 # @bot.slash_command(description="About me.")
 # async def about(ctx):
 #     embed = disnake.Embed(title="GG SMP", description= "Official Bot of GG SMP!", color=disnake.Color.red())
@@ -118,5 +118,6 @@ async def youtube(ctx, *, search):
 @bot.event
 async def on_ready():
     print('GG is ready.')
+    bot.add_view(view=Refresh)
 
 bot.run(os.getenv('TOKEN'))
