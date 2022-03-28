@@ -55,12 +55,12 @@ class Refresh(disnake.ui.View):
         super().__init__()
         self.value = None
     
-    server = BedrockServer.lookup("ggnetworkk.aternos.me:34624")
-    status = server.status()
     @disnake.ui.button(label="Refresh", style=disnake.ButtonStyle.green, emoji='🔃')
     async def confirm(self, button: disnake.ui.Button, interaction: disnake.MessageInteraction):
         await interaction.response.send_message("Refreshing", ephemeral=True)
         self.value = True
+        server = BedrockServer.lookup("ggnetworkk.aternos.me:34624")
+        status = server.status()
         if status.players_max == 1:
             await interaction.message.edit('offline')
         else:
