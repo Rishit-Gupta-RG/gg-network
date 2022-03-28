@@ -24,7 +24,7 @@ import json
 from disnake import AppCommandInteraction
 
 from psutil import users
-from mcstatus import MinecraftBedrockServer
+from mcstatus import BedrockServer
 from dotenv import load_dotenv
 load_dotenv()
 

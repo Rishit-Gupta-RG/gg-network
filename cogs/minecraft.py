@@ -1,7 +1,7 @@
 from datetime import datetime
 from sqlite3 import Timestamp
 from unicodedata import name
-from mcstatus import MinecraftBedrockServer
+from mcstatus import BedrockServer
 import disnake
 from disnake.ext import commands
 from disnake import AllowedMentions, member, channel
@@ -13,7 +13,7 @@ class Minecraft(commands.Cog):
         self.bot = bot
     @commands.command(name="check", brief="Checks status for GG Network", help="Want to check whether the server is online or not? just type the command an you'll get some information.", enabled=True)
     async def check(self, ctx):
-        server = MinecraftBedrockServer.lookup("ggnetworkk.aternos.me:34624")
+        server = BedrockServer.lookup("ggnetworkk.aternos.me:34624")
         status = server.status()
         if status.players_max == '1':
             off = disnake.Embed(title="Status for GG Network", description="Oh! no the server is offline \🔴\n\n Do you want to play now? Turn it on thorugh [Aternos Dashboard](https://aternos.org/server/) or ask someone with <@&880915882895872080> role to turn it on.", color=ctx.author.color, timestamp=datetime.utcnow())
