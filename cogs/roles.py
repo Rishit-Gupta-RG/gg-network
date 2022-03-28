@@ -10,7 +10,7 @@ class Roles(commands.Cog):
     async def role(self, ctx):
         embed = disnake.embed(title='List of color roles.', description='Red\nGreen\nYellow\nBlue\nCyan\nPurple\nPink\nOrange\mBlack\nLime', color=ctx.author.color)
         await ctx.send(embed=embed)
-    @commands.role.command(name='red')
+    @role.command(name='red')
     async def red(self, ctx):
         yellow = self.bot.get_role(858720010503192576)
         blue = self.bot.get_role(858720201709584425)
