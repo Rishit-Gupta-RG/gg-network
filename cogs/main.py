@@ -74,7 +74,6 @@ async def deploy(ctx):
     off.set_footer(icon_url=ctx.guild.icon, text=ctx.guild.name)
     await ctx.send(embed=off, view=view)
     
-@bot.add_view(view=Refresh)
 # @bot.slash_command(description="About me.")
 # async def about(ctx):
 #     embed = disnake.Embed(title="GG SMP", description= "Official Bot of GG SMP!", color=disnake.Color.red())
