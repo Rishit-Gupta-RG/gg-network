@@ -1,7 +1,7 @@
 from logging import fatal
 from socket import CAN_BCM_TX_ANNOUNCE
 import disnake
-from disnake import AllowedMentions, Intents, channel
+from disnake import AllowedMentions, Intents, Interaction, channel
 from disnake import embeds
 from disnake.embeds import Embed
 import asyncio
@@ -21,6 +21,7 @@ from disnake import TextChannel
 from disnake import ui
 import sys, traceback
 import json
+from disnake import AppCommandInteraction
 
 from psutil import users
 from mcstatus import MinecraftBedrockServer
@@ -53,32 +54,28 @@ class Refresh(disnake.ui.View):
     def __init__(self):
         super().__init__()
         self.value = None
+        self.inter = Interaction
     
-    @disnake.ui.button(label="Confirm", style=disnake.ButtonStyle.green)
+    @disnake.ui.button(label="Refresh", style=disnake.ButtonStyle.green, emoji='🔃')
     async def confirm(self, button: disnake.ui.Button, interaction: disnake.MessageInteraction):
-        await interaction.response.send_message("Confirming", ephemeral=True)
+        await interaction.response.send_message("Refreshing", ephemeral=True)
         self.value = True
         self.stop()
-    @disnake.ui.button(label="Cancel", style=disnake.ButtonStyle.grey)
-    async def cancel(self, button: disnake.ui.Button, interaction: disnake.MessageInteraction):
-        await interaction.response.send_message("Cancelling", ephemeral=True)
-        self.value = False
-        self.stop()
+server = MinecraftBedrockServer.lookup("ggnetworkk.aternos.me:34624")
+status = server.status()
 
-@bot.command()
-async def ask(ctx: commands.Context):
-    """Asks the user a question to confirm something."""
-    # We create the view and assign it to a variable so we can wait for it later.
+@bot.command(hidden=True, description='deploys status checker.')
+async def deploy(ctx):
     view = Refresh()
-    await ctx.send("Do you want to continue?", view=view)
-    # Wait for the View to stop listening for input...
+    off = disnake.Embed(title="Status for GG Network", description="Oh! no the server is offline \🔴\n\n Do you want to play now? Turn it on thorugh [Aternos Dashboard](https://aternos.org/server/) or ask someone with <@&880915882895872080> role to turn it on.", color=ctx.author.color, timestamp=datetime.utcnow())
+    off.set_footer(icon_url=ctx.guild.icon, text=ctx.guild.name)
+    msg = await ctx.send(embed=off, view=view)
     await view.wait()
-    if view.value is None:
-        print("Timed out...")
-    elif view.value:
-        print("Confirmed...")
+    if status.players_max == "1":
+        await msg.edit_original_message(embed=off)
     else:
-        print("Cancelled...")
+        await msg.edit_original_message("Server is on.")
+    
 
 # @bot.slash_command(description="About me.")
 # async def about(ctx):
