@@ -52,27 +52,27 @@ async def ping(ctx):
 
 class Refresh(disnake.ui.View):
     def __init__(self):
-        super().__init__(timeout=None)
+        super().__init__()
         self.value = None
-        self.inter = Interaction
     
+    server = BedrockServer.lookup("ggnetworkk.aternos.me:34624")
+    status = server.status()
     @disnake.ui.button(label="Refresh", style=disnake.ButtonStyle.green, emoji='🔃')
     async def confirm(self, button: disnake.ui.Button, interaction: disnake.MessageInteraction):
         await interaction.response.send_message("Refreshing", ephemeral=True)
         self.value = True
-server = BedrockServer.lookup("ggnetworkk.aternos.me:34624")
-status = server.status()
+        if status.players_max == 1:
+            await interaction.message.edit('offline')
+        else:
+            await interaction.message.edit('online')
+    
 
 @bot.command(hidden=True, description='deploys status checker.')
 async def deploy(ctx):
     view = Refresh()
     off = disnake.Embed(title="Status for GG Network", description="Oh! no the server is offline \🔴\n\n Do you want to play now? Turn it on thorugh [Aternos Dashboard](https://aternos.org/server/) or ask someone with <@&880915882895872080> role to turn it on.", color=ctx.author.color)
     off.set_footer(icon_url=ctx.guild.icon, text=ctx.guild.name)
-    msg = await ctx.send(embed=off, view=view)
-    if status.players_max == 1:
-        await msg.edit(embed=off)
-    else:
-        await msg.edit("Server is on.")
+    await ctx.send(embed=off, view=view)
     
 @bot.add_view(view=Refresh)
 # @bot.slash_command(description="About me.")
