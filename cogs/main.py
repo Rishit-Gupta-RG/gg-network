@@ -71,9 +71,9 @@ async def deploy(ctx):
     msg = await ctx.send(embed=off, view=view)
     await view.wait()
     if status.players_max == 1:
-        await msg.edit_original_message(embed=off)
+        await msg.edit(embed=off)
     else:
-        await msg.edit_original_message("Server is on.")
+        await msg.edit("Server is on.")
     
 
 # @bot.slash_command(description="About me.")
