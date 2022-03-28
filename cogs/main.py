@@ -49,6 +49,37 @@ async def ping(ctx):
     ping = (time.monotonic() - before) * 1000
     await message.edit(content=f"Pong!  `{int(ping)}ms`")
 
+class Refresh(disnake.ui.View):
+    def __init__(self):
+        super().__init__()
+        self.value = None
+    
+    @disnake.ui.button(label="Confirm", style=disnake.ButtonStyle.green)
+    async def confirm(self, button: disnake.ui.Button, interaction: disnake.MessageInteraction):
+        await interaction.response.send_message("Confirming", ephemeral=True)
+        self.value = True
+        self.stop()
+    @disnake.ui.button(label="Cancel", style=disnake.ButtonStyle.grey)
+    async def cancel(self, button: disnake.ui.Button, interaction: disnake.MessageInteraction):
+        await interaction.response.send_message("Cancelling", ephemeral=True)
+        self.value = False
+        self.stop()
+
+@bot.command()
+async def ask(ctx: commands.Context):
+    """Asks the user a question to confirm something."""
+    # We create the view and assign it to a variable so we can wait for it later.
+    view = Refresh()
+    await ctx.send("Do you want to continue?", view=view)
+    # Wait for the View to stop listening for input...
+    await view.wait()
+    if view.value is None:
+        print("Timed out...")
+    elif view.value:
+        print("Confirmed...")
+    else:
+        print("Cancelled...")
+
 # @bot.slash_command(description="About me.")
 # async def about(ctx):
 #     embed = disnake.Embed(title="GG SMP", description= "Official Bot of GG SMP!", color=disnake.Color.red())
