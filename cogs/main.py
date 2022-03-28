@@ -62,9 +62,9 @@ class Refresh(disnake.ui.View):
         server = BedrockServer.lookup("ggnetworkk.aternos.me:34624")
         status = server.status()
         if status.players_max == 1:
-            await interaction.message.edit('offline')
+            await interaction.message.edit(content='offline')
         else:
-            await interaction.message.edit('online')
+            await interaction.message.edit(content='online')
     
 
 @bot.command(hidden=True, description='deploys status checker.')
