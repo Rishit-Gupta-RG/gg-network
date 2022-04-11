@@ -21,7 +21,7 @@ class Moderation(commands.Cog):
     async def my_kick_command(self, ctx, member: disnake.Member, *,reason: str=None) -> None:
         await member.send(msg["kick_dm"])
         await member.kick(reason=reason)
-        await ctx.send(msg["kick"])
+        await ctx.send(msg["kick"].format(member=member, reason=reason))
 
     @commands.command(name="warn", brief="Warns a member.", description="Warns of member.", aliases=['w', 'warning'], usage='\nUsage:\n!warn <member> [reason]\nExamples:\n!warn @Arpit chat in off-topic channel.', enabled=True)
     @commands.check_any(commands.has_role(mrole), commands.is_owner(), commands.has_permissions(kick_members=True), commands.has_permissions(administrator=True))

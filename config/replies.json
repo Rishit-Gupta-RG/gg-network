@@ -1,15 +1,15 @@
 {
-    "kick": "f'📨 👢 applied **kick** to {member.mention} permanently. `[Reason: {reason}]`'",
-    "kick_dm": "f'You were kicked in **{ctx.guild.name}** by **{ctx.author.name}**.\n `[Reason: {reason}]`'",
-    "warn": "f'📨 👢 applied **warning** to {member.mention}. `[Reason: {reason}]`'",
-    "warn_dm": "f'You recieved a warning in **{ctx.guild.name}** by **{ctx.author.name}**.\n `[Reason: {reason}]`'",
-    "timeout": "f'📨 🤐 applied **timeout** to {member.mention} for {duration}. `[Reason: {reason}]`'",
-    "timeout_dm": "f'You were Timed out in **{ctx.guild.name}** by **{ctx.author.name}** for **{duration}**.\n `[Reason: {reason}]`'",
-    "ban_dm": "f'You were banned from **{ctx.guild.name}** by **{ctx.author.name}**.\n `[Reason: {reason}]`'",
-    "ban": "f'📨 🔨 applied **ban** to {member.mention}. `[Reason: {reason}]`'",
-    "nickname": "f'Changed nickname of {member.mention} to `{new_nick}`.'",
-    "remove-timeout_dm": "f'Your timeout in {ctx.guild.name} has been removed. `[Reason: {reason}]`'",
-    "remove-timeout": "f'📨 👌 pardoned infraction **timeout** for {member.mention}. `[Reason: {reason}]`'",
-    "hard-delete": "f'👌 applied **hard delete** to {member.mention}.'",
-    "hard-delete-remove": "f'👌 pardoned infraction **hard delete** for {member.mention}.'"
+    "kick": "📨 👢 applied **kick** to {member.mention} permanently. `[Reason: {reason}]`",
+    "kick_dm": "You were kicked in **{ctx.guild.name}** by **{ctx.author.name}**.\n `[Reason: {reason}]",
+    "warn": "📨 👢 applied **warning** to {member.mention}. `[Reason: {reason}]`",
+    "warn_dm": "You recieved a warning in **{ctx.guild.name}** by **{ctx.author.name}**.\n `[Reason: {reason}]`",
+    "timeout": "📨 🤐 applied **timeout** to {member.mention} for {duration}. `[Reason: {reason}]`",
+    "timeout_dm": "You were Timed out in **{ctx.guild.name}** by **{ctx.author.name}** for **{duration}**.\n `[Reason: {reason}]`",
+    "ban_dm": "You were banned from **{ctx.guild.name}** by **{ctx.author.name}**.\n `[Reason: {reason}]`",
+    "ban": "📨 🔨 applied **ban** to {member.mention}. `[Reason: {reason}]`",
+    "nickname": "Changed nickname of {member.mention} to `{new_nick}`.",
+    "remove-timeout_dm": "Your timeout in {ctx.guild.name} has been removed. `[Reason: {reason}]`",
+    "remove-timeout": "📨 👌 pardoned infraction **timeout** for {member.mention}. `[Reason: {reason}]`",
+    "hard-delete": "👌 applied **hard delete** to {member.mention}.",
+    "hard-delete-remove": "👌 pardoned infraction **hard delete** for {member.mention}."
 }
