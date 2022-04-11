@@ -37,7 +37,7 @@ intents = disnake.Intents.default()
 intents.presences = True
 intents.members = True
 intents.messages = True
-bot = commands.Bot(command_prefix=data["bot_prefix"],test_guilds=817003562663149578, intents=intents, case_insensitive=True)
+bot = commands.Bot(command_prefix=data["bot_prefix"],test_guilds=[817003562663149578], intents=intents, case_insensitive=True)
 disnake.AllowedMentions(users=False)
 
 initial_extensions = ['cogs.minecraft']
