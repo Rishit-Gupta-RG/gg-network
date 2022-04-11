@@ -30,16 +30,15 @@ from dotenv import load_dotenv
 load_dotenv()
 
 from disnake.ext.commands.errors import CheckAnyFailure
+with open('config/config.json', 'r') as f:
+    data = json.loads(f)
 
 intents = disnake.Intents.default()
 intents.presences = True
 intents.members = True
 intents.messages = True
-bot = commands.Bot(command_prefix="!",test_guilds=[817003562663149578], intents=intents, case_insensitive=True)
+bot = commands.Bot(command_prefix=data["bot_prefix"],test_guilds=data["test_guild"], intents=intents, case_insensitive=True)
 disnake.AllowedMentions(users=False)
-
-#VARIABLES
-edition = "`1.18.12`"
 
 initial_extensions = ['cogs.minecraft']
 
@@ -63,26 +62,26 @@ class Refresh(disnake.ui.View):
     async def confirm(self, button: disnake.ui.Button, interaction: disnake.MessageInteraction):
         await interaction.response.send_message("Refreshing 🔃", ephemeral=True)
         self.value = True
-        server = BedrockServer.lookup("ggnetworkk.aternos.me:34624")
+        server = BedrockServer.lookup(data["server_ip"])
         status = server.status()
         if status.players_max == 1:
-            off = disnake.Embed(title="GG Network status panel.", description="**Status -** Offline :red_circle:\n\nDo you want to play now? Turn it on thorugh [Aternos Dashboard](https://aternos.org/server/) or ask someone with <@&880915882895872080> role to turn it on.", color=0xf80000)
-            off.set_thumbnail(url='https://cdn.discordapp.com/icons/817003562663149578/a_427636e6c26d830bbcc36969a9e83608.gif?size=4096')
-            off.set_author(icon_url='https://cdn.discordapp.com/icons/817003562663149578/a_427636e6c26d830bbcc36969a9e83608.gif?size=4096', name='ggnetwork.aternos.me:34624')
+            off = disnake.Embed(title=data["minecraft_server_name"] + "status panel.", description="**Status -** Offline :red_circle:\n\nDo you want to play now? Turn it on thorugh [Aternos Dashboard](https://aternos.org/server/) or ask someone with <@"+data["minecraft_admin_role_id"]+"> role to turn it on.", color=0xf80000)
+            off.set_thumbnail(url=data["thumbnail_url"])
+            off.set_author(icon_url="thumbnail_url", name=data["server_ip"])
             off.set_footer(text='Click on the refresh button below to refresh the status.')
             await interaction.message.edit(embed=off)
         else:
-            on = disnake.Embed(title="GG Network status panel.", description=f"**Status -** Online :green_circle:\n\n**Online Players-** `{status.players_online}`\n**Max. Players -** `{status.players_max}`\n**Edition -** {edition}\n**Ping -** `{int(status.latency*100)}ms`", color=0x3cff00)
-            on.set_thumbnail(url='https://cdn.discordapp.com/icons/817003562663149578/a_427636e6c26d830bbcc36969a9e83608.gif?size=4096')
+            on = disnake.Embed(title=data["minecraft_server_name"]+"status panel.", description=f"**Status -** Online :green_circle:\n\n**Online Players-** `{status.players_online}`\n**Max. Players -** `{status.players_max}`\n**Edition -** "+data["minecraft_version"]+f"\n**Ping -** `{int(status.latency*100)}ms`", color=0x3cff00)
+            on.set_thumbnail(url=data["thumbnail_url"])
             on.set_footer(text='Click on the refresh button below to refresh the status.')
-            on.set_author(icon_url='https://cdn.discordapp.com/icons/817003562663149578/a_427636e6c26d830bbcc36969a9e83608.gif?size=4096', name='ggnetwork.aternos.me:34624')
+            on.set_author(icon_url=data["thumbnail_url"], name=data["server_ip"])
             await interaction.message.edit(embed=on)
     
 
 @bot.command(hidden=True, description='deploys status checker.')
 async def deploy(ctx):
     view = Refresh()
-    off = disnake.Embed(title="Status for GG Network", description="Oh! no the server is offline \🔴\n\n Do you want to play now? Turn it on thorugh [Aternos Dashboard](https://aternos.org/server/) or ask someone with <@&880915882895872080> role to turn it on.", color=ctx.author.color)
+    off = disnake.Embed(title="Status for"+data["minecraft_server_name"], description="Oh! no the server is offline \🔴\n\n Do you want to play now? Turn it on thorugh [Aternos Dashboard](https://aternos.org/server/) or ask someone with <@"+data["minecraft_admin_role_id"]+"> role to turn it on.", color=ctx.author.color)
     off.set_footer(icon_url=ctx.guild.icon, text=ctx.guild.name)
     await ctx.send(embed=off, view=view)
 
@@ -129,7 +128,7 @@ async def youtube(ctx, *, search):
 
 @bot.event
 async def on_ready():
-    print('GG is ready.')
+    print('Bot is ready.')
     bot.add_view(view=Refresh())
 
 bot.run(os.getenv('TOKEN'))

@@ -1,0 +1,10 @@
+{
+    "bot_prefix": "!",
+    "test_guild": 817003562663149578,
+    "minecraft_version": "`1.18.12`",
+    "server_ip": "ggnetworkk.aternos.me:34624",
+    "thumbnail_url": "https://cdn.discordapp.com/icons/817003562663149578/a_427636e6c26d830bbcc36969a9e83608.gif?size=4096",
+    "minecraft_server_name": "GG Network",
+    "minecraft_admin_role_id": 880915882895872080,
+    "discord_moderator_role_id": 930527570800287804
+}
