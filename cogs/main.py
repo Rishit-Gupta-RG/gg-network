@@ -31,7 +31,7 @@ load_dotenv()
 
 from disnake.ext.commands.errors import CheckAnyFailure
 with open('config/config.json', 'r') as f:
-    data = json.loads(f)
+    data = json.load(f)
 
 intents = disnake.Intents.default()
 intents.presences = True

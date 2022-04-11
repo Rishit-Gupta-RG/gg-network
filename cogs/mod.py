@@ -7,9 +7,9 @@ from psutil import users
 import random
 import json
 with open('config/config.json', 'r') as f:
-    data = json.loads(f)
+    data = json.load(f)
 with open('config/replies.json', 'r') as k:
-    msg = json.loads(k)
+    msg = json.load(k)
 mrole = data["discord_moderator_role_id"]
 hard = []
 
