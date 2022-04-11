@@ -65,7 +65,7 @@ class Refresh(disnake.ui.View):
         server = BedrockServer.lookup(data["server_ip"])
         status = server.status()
         if status.players_max == 1:
-            off = disnake.Embed(title=data["minecraft_server_name"] + "status panel.", description="**Status -** Offline :red_circle:\n\nDo you want to play now? Turn it on thorugh [Aternos Dashboard](https://aternos.org/server/) or ask someone with <@"+int(data["minecraft_admin_role_id"])+"> role to turn it on.", color=0xf80000)
+            off = disnake.Embed(title=data["minecraft_server_name"] + "status panel.", description="**Status -** Offline :red_circle:\n\nDo you want to play now? Turn it on thorugh [Aternos Dashboard](https://aternos.org/server/) or ask someone with <@880915882895872080> role to turn it on.", color=0xf80000)
             off.set_thumbnail(url=data["thumbnail_url"])
             off.set_author(icon_url="thumbnail_url", name=data["server_ip"])
             off.set_footer(text='Click on the refresh button below to refresh the status.')
@@ -81,7 +81,7 @@ class Refresh(disnake.ui.View):
 @bot.command(hidden=True, description='deploys status checker.')
 async def deploy(ctx):
     view = Refresh()
-    off = disnake.Embed(title="Status for"+data["minecraft_server_name"], description="Oh! no the server is offline \🔴\n\n Do you want to play now? Turn it on thorugh [Aternos Dashboard](https://aternos.org/server/) or ask someone with <@"+int(data["minecraft_admin_role_id"])+"> role to turn it on.", color=ctx.author.color)
+    off = disnake.Embed(title="Status for"+data["minecraft_server_name"], description="Oh! no the server is offline \🔴\n\n Do you want to play now? Turn it on thorugh [Aternos Dashboard](https://aternos.org/server/) or ask someone with <@880915882895872080> role to turn it on.", color=ctx.author.color)
     off.set_footer(icon_url=ctx.guild.icon, text=ctx.guild.name)
     await ctx.send(embed=off, view=view)
 
