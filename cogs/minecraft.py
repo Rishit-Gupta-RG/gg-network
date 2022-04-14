@@ -14,8 +14,14 @@ with open('config/config.json', 'r') as f:
 class Minecraft(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
-    @commands.slash_command(name="check", description="Checks status for GG Network", help="Want to check whether the server is online or not? just type the command an you'll get some information.", enabled=True)
+    @commands.slash_command(name="check", description="Checks status for GG Network.", help="Want to check whether the server is online or not? just type the command an you'll get some information.", enabled=True)
     async def check(self, ctx):
+        """
+        Parameters
+        ----------
+        
+        Checks status for GG Network.
+        """
         server = BedrockServer.lookup(data["server_ip"])
         status = server.status()
         if status.players_max == 1:
