@@ -118,7 +118,7 @@ async def deploy(ctx):
 #   await ctx.send(embed=embed)
 
     
-@bot.slash_command(description="Seached on youtube for a given query.")
+@bot.slash_command(description="Seaches on youtube for a given query.")
 async def youtube(ctx, *, search):
     query_string = parse.urlencode({'search_query': search})
     html_content = request.urlopen('http://www.youtube.com/results?' + query_string)
