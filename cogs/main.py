@@ -37,7 +37,7 @@ intents = disnake.Intents.default()
 intents.presences = True
 intents.members = True
 intents.messages = True
-bot = commands.Bot(command_prefix=data["bot_prefix"],test_guilds=[817003562663149578], intents=intents, case_insensitive=True)
+bot = commands.Bot(command_prefix=commands.when_mentioned,test_guilds=[817003562663149578], intents=intents, case_insensitive=True)
 disnake.AllowedMentions(users=False)
 
 initial_extensions = ['cogs.minecraft']
@@ -46,7 +46,7 @@ if __name__ == '__main__':
     for extension in initial_extensions:
         bot.load_extension(extension)
 
-@bot.command()
+@bot.command(hidden=True)
 async def ping(ctx):
     before = time.monotonic()
     message = await ctx.send("Pong!")
