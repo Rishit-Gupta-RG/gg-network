@@ -23,7 +23,7 @@ class Minecraft(commands.Cog):
             off.set_footer(icon_url=ctx.guild.icon, text=ctx.guild.name)
             await ctx.send(embed=off)
         else:
-            on = disnake.Embed(title="Status for"+data["minecraft_server_name"], description=f"**Status -** Online \🟢\n**Online players -** `{status.players_online}`\n**Ping -** `{int(status.latency*100)}ms`", color=0x3cff00, timestamp=datetime.utcnow())
+            on = disnake.Embed(title="Status for "+data["minecraft_server_name"], description=f"**Status -** Online \🟢\n**Online players -** `{status.players_online}`\n**Ping -** `{int(status.latency*100)}ms`", color=0x3cff00, timestamp=datetime.utcnow())
             on.set_footer(icon_url=ctx.guild.icon, text=ctx.guild.name)
             on.set_author(name=data["server_ip"])
             on.set_thumbnail(url=ctx.guild.icon)
