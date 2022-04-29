@@ -23,7 +23,7 @@ from disnake import ui
 import sys, traceback
 import json
 from disnake import AppCommandInteraction
-
+import aiohttp
 from psutil import users
 from mcstatus import BedrockServer
 from dotenv import load_dotenv
@@ -116,6 +116,28 @@ async def deploy(ctx):
 #   embed.add_field(name="Member Count", value=memberCount, inline=True)
 
 #   await ctx.send(embed=embed)
+
+ANIMALS = ["panda", "dog", "cat", "fox", "red panda", "koala", "bird", "racoon", "kangaroo", "whale", "pikachu"]
+async def autocomp_animals(inter: disnake.ApplicationCommandInteraction, user_input: str):
+    return [lang for lang in ANIMALS if user_input.lower() in lang]
+
+
+@bot.slash_command()
+async def animal(inter):
+    pass
+
+@animal.sub_command()
+async def image(inter: disnake.ApplicationCommandInteraction, animal: str = commands.Param(autocomplete=autocomp_animals)):
+    if animal == "panda":
+        async with aiohttp.ClientSession() as session:
+            request = await session.get('https://some-random-api.ml/img/panda')
+            whalejson = await request.json()
+        embed = disnake.Embed(title="Panda!", color=inter.author.color)
+        embed.set_image(url=whalejson['link'])
+        await inter.response.send_message(embed=embed)
+    else:
+        await inter.response.send_message('test')
+
 
     
 @bot.slash_command(description="Seached on youtube for a given query.")
