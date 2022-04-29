@@ -120,7 +120,9 @@ async def deploy(ctx):
 ANIMALS = ["Panda", "Dog", "Cat", "Fox", "Red panda", "Koala", "Bird", "Racoon", "Kangaroo", "Whale", "Pikachu"]
 async def autocomp_animals(inter: disnake.ApplicationCommandInteraction, user_input: str):
     return [lang for lang in ANIMALS if user_input.lower() in lang]
-
+FACT_ANIMALS = ["Panda", "Dog", "Cat", "Fox", "Red panda", "Koala", "Bird", "Racoon", "Kangaroo", "Whale", "Pikachu"]
+async def autocomp_animalfact(inter: disnake.ApplicationCommandInteraction, user_input: str):
+    return [lang for lang in FACT_ANIMALS if user_input.lower() in lang]
 
 @bot.slash_command()
 async def animal(inter):
@@ -149,6 +151,29 @@ async def image(inter: disnake.ApplicationCommandInteraction, animal: str = comm
             whalejson = await request.json()
         embed = disnake.Embed(title=f"{animal}!", color=inter.author.color)
         embed.set_image(url=whalejson['link'])
+        await inter.response.send_message(embed=embed)
+
+@animal.sub_command(description="Sends a random fact of selected animal.")
+async def fact(inter: disnake.ApplicationCommandInteraction, animal: str = commands.Param(autocomplete=autocomp_animalfact)):
+    """
+    Sends a random fact of selected animal.
+    
+    Parameters
+    ----------
+    animal: Select an animal to see its fact.
+    """
+    if animal in ("Panda", "Dog", "Cat", "Fox","Koala", "Bird", "Racoon", "Kangaroo", "Whale"):
+        k = animal.lower()
+        async with aiohttp.ClientSession() as session:
+            request = await session.get(f'https://some-random-api.ml/facts/{k}')
+            whalejson = await request.json()
+        embed = disnake.Embed(title=f"{animal} Fact!",description=whalejson['fact'],color=inter.author.color)
+        await inter.response.send_message(embed=embed)
+    else:
+        async with aiohttp.ClientSession() as session:
+            request = await session.get(f'https://some-random-api.ml/facts/red_panda')
+            whalejson = await request.json()
+        embed = disnake.Embed(title=f"{animal} Fact!",description=whalejson['fact'],color=inter.author.color)
         await inter.response.send_message(embed=embed)
     
 @bot.slash_command(description="Seaches on youtube for a given query.")
