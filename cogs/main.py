@@ -117,7 +117,7 @@ async def deploy(ctx):
 
 #   await ctx.send(embed=embed)
 
-ANIMALS = ["panda", "dog", "cat", "fox", "red panda", "koala", "bird", "racoon", "kangaroo", "whale", "pikachu"]
+ANIMALS = ["Panda", "Dog", "Cat", "Fox", "Red panda", "Koala", "Bird", "Racoon", "Kangaroo", "Whale", "Pikachu"]
 async def autocomp_animals(inter: disnake.ApplicationCommandInteraction, user_input: str):
     return [lang for lang in ANIMALS if user_input.lower() in lang]
 
@@ -126,19 +126,30 @@ async def autocomp_animals(inter: disnake.ApplicationCommandInteraction, user_in
 async def animal(inter):
     pass
 
-@animal.sub_command()
+@animal.sub_command(description="Sends a picture of selected animal.")
 async def image(inter: disnake.ApplicationCommandInteraction, animal: str = commands.Param(autocomplete=autocomp_animals)):
-    if animal == "panda":
+    """
+    Sends a picture of selected animal.
+    
+    Parameters
+    ----------
+    animal: Select an animal to see its picture.
+    """
+    if animal in ("Panda", "Dog", "Cat", "Fox","Koala", "Bird", "Racoon", "Kangaroo", "Whale", "Pikachu"):
+        k = animal.lower()
         async with aiohttp.ClientSession() as session:
-            request = await session.get('https://some-random-api.ml/img/panda')
+            request = await session.get(f'https://some-random-api.ml/img/{k}')
             whalejson = await request.json()
-        embed = disnake.Embed(title="Panda!", color=inter.author.color)
+        embed = disnake.Embed(title=f"{animal}!", color=inter.author.color)
         embed.set_image(url=whalejson['link'])
         await inter.response.send_message(embed=embed)
     else:
-        await inter.response.send_message('test')
-
-
+        async with aiohttp.ClientSession() as session:
+            request = await session.get(f'https://some-random-api.ml/img/red_panda')
+            whalejson = await request.json()
+        embed = disnake.Embed(title=f"{animal}!", color=inter.author.color)
+        embed.set_image(url=whalejson['link'])
+        await inter.response.send_message(embed=embed)
     
 @bot.slash_command(description="Seaches on youtube for a given query.")
 async def youtube(ctx, *, search):
