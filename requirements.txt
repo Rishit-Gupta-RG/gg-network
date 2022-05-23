@@ -4,4 +4,4 @@ disnake==2.5.1
 mcstatus==9.0.4
 python-dotenv==0.20.0
 discord-pretty-help==1.3.4
-psutil==5.9.0
+psutil==5.9.1
