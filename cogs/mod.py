@@ -132,7 +132,7 @@ class Moderation(commands.Cog):
             hard.append(member.id)
 
     @commands.Cog.listener()
-    async def on_message(msg):
+    async def on_message(self, msg):
         if msg.author.id in hard:
             await msg.delete()
 
