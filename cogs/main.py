@@ -40,7 +40,7 @@ intents.messages = True
 bot = commands.Bot(command_prefix=commands.when_mentioned,test_guilds=[817003562663149578], intents=intents, case_insensitive=True)
 disnake.AllowedMentions(users=False)
 
-initial_extensions = ['cogs.minecraft']
+initial_extensions = ['cogs.minecraft', 'cogs.mod']
 
 if __name__ == '__main__':
     for extension in initial_extensions:
