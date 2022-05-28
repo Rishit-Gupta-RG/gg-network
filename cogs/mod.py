@@ -36,7 +36,7 @@ class Moderation(commands.Cog):
         embed.set_footer(icon_url=gg_gif, text=ctx.guild.name)
         await member.send(embed=embed)
         await member.kick(reason=reason)
-        await ctx.send(f"👌 Successfully {ctx.command}ed {member.mention} | `{member}`.\nWith the reason of: {reason}")
+        await ctx.send(f"👌 Successfully kicked {member.mention} | `{member}`.\nWith the reason of: {reason}")
 
     @commands.slash_command(name="warn")
     @commands.check_any(commands.has_role(mrole), commands.is_owner(), commands.has_permissions(kick_members=True), commands.has_permissions(administrator=True))
@@ -53,7 +53,7 @@ class Moderation(commands.Cog):
         embed.set_author(name=ctx.author, icon_url=ctx.author.display_avatar.url)
         embed.set_footer(icon_url=gg_gif, text=ctx.guild.name)
         await member.send(embed=embed)
-        await ctx.send(f"👌 Successfully {ctx.command}ed {member.mention} | `{member}`.\nWith the reason of: {reason}")
+        await ctx.send(f"👌 Successfully warned {member.mention} | `{member}`.\nWith the reason of: {reason}")
 
     @commands.slash_command(name="timeout")
     @commands.check_any(commands.has_role(mrole), commands.is_owner(), commands.has_permissions(manage_nicknames=True), commands.has_permissions(administrator=True))
@@ -82,7 +82,7 @@ class Moderation(commands.Cog):
             embed.set_footer(icon_url=gg_gif, text=ctx.guild.name)
             await member.send(embed=embed)
             await member.timeout(reason=reason, duration=timeout_time)
-            await ctx.send(f"👌 Successfully Timed out {member.mention} for {duration}\nWith the reason of: {reason}")
+            await ctx.send(f"👌 Successfully timed out {member.mention} for {duration}\nWith the reason of: {reason}")
 
     @commands.slash_command(name="ban")
     @commands.check_any(commands.has_role(mrole), commands.is_owner(), commands.has_permissions(ban_members=True), commands.has_permissions(administrator=True))
