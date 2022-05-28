@@ -178,6 +178,13 @@ async def fact(inter: disnake.ApplicationCommandInteraction, animal: str = comma
     
 @bot.slash_command(description="Seaches on youtube for a given query.")
 async def youtube(ctx, *, search):
+    """
+    Seaches on youtube for a given query.
+    
+    Parameters
+    ----------
+    search: The query to search for
+    """
     query_string = parse.urlencode({'search_query': search})
     html_content = request.urlopen('http://www.youtube.com/results?' + query_string)
     search_content= html_content.read().decode()
