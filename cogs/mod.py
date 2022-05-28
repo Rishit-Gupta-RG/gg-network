@@ -7,7 +7,7 @@ from disnake import AllowedMentions, member, channel
 from psutil import users
 import random
 import json
-import datetime
+from datetime import datetime
 
 with open('config/config.json', 'r') as f:
     data = json.load(f)
