@@ -1,4 +1,5 @@
 from cgitb import text
+import imp
 from logging import fatal
 from socket import CAN_BCM_TX_ANNOUNCE
 import disnake
@@ -10,6 +11,7 @@ from disnake.ext import commands
 import datetime
 import time
 import os
+import random
 import re
 from disnake import Member
 from disnake.ext.commands import has_permissions, MissingPermissions
@@ -28,6 +30,7 @@ from psutil import users
 from mcstatus import BedrockServer
 from dotenv import load_dotenv
 load_dotenv()
+from disnake.ext import tasks
 from disnake.ext.commands.errors import CheckAnyFailure
 
 intents = disnake.Intents.default()
@@ -68,7 +71,7 @@ class Refresh(disnake.ui.View):
             off.set_footer(text='Click on the refresh button below to refresh the status.')
             await interaction.message.edit(embed=off)
         else:
-            on = disnake.Embed(title="GG Network status panel.", description=f"**Status -** Online :green_circle:\n\n**Online Players-** `{status.players_online}`\n**Max. Players -** `{status.players_max}`\n**Edition -** "+data["minecraft_version"]+f"\n**Ping -** `{int(status.latency*100)}ms`", color=0x3cff00)
+            on = disnake.Embed(title="GG Network status panel.", description=f"**Status -** Online :green_circle:\n\n**Online Players-** `{status.players_online}`\n**Max. Players -** `{status.players_max}`\n**Version -** `1.18.32`\n**Ping -** `{int(status.latency*100)}ms`", color=0x3cff00)
             on.set_thumbnail(url="https://cdn.discordapp.com/icons/817003562663149578/a_427636e6c26d830bbcc36969a9e83608.gif?size=4096")
             on.set_footer(text='Click on the refresh button below to refresh the status.')
             on.set_author(icon_url="https://cdn.discordapp.com/icons/817003562663149578/a_427636e6c26d830bbcc36969a9e83608.gif?size=4096", name="ggnetworkk.aternos.me")
@@ -192,6 +195,24 @@ async def youtube(ctx, *, search):
     search_content= html_content.read().decode()
     search_results = re.findall(r'\/watch\?v=\w+', search_content)
     await ctx.send("Here's what I found" ' ' 'https://www.youtube.com' + search_results[0])
+
+@bot.listen()
+async def on_message(message):
+    if message.channel.id == 983281430136242267:
+            if "https://" in message.content:
+                await message.add_reaction('🔼')
+                await message.add_reaction('🔽')
+
+@bot.listen()
+async def on_message(message):
+    if message.attachments and message.channel.id==983281430136242267:
+        await message.add_reaction('🔼')
+        await message.add_reaction('🔽')
+
+@tasks.loop(hours=1)
+async def banner_changer():
+    gg = bot.get_guild(817003562663149578)
+    await gg.edit(banner=random.choice(os.listdir('banners')))
 
 @bot.event
 async def on_ready():
