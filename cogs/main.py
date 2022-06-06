@@ -213,6 +213,7 @@ async def on_message(message):
 async def banner_changer():
     gg = bot.get_guild(817003562663149578)
     await gg.edit(banner=random.choice(os.listdir('banners')))
+banner_changer.start()
 
 @bot.event
 async def on_ready():
