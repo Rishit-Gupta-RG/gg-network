@@ -153,6 +153,11 @@ async def image(inter: disnake.ApplicationCommandInteraction, animal: str = comm
         embed.set_image(url=whalejson['link'])
         await inter.response.send_message(embed=embed)
 
+@bot.command()
+async def btest(ctx):
+    with open ('banner/nice.gif', 'rb') as f:
+        await ctx.guild.edit(banner=f.read())
+
 @animal.sub_command(description="Sends a random fact of selected animal.")
 async def fact(inter: disnake.ApplicationCommandInteraction, animal: str = commands.Param(autocomplete=autocomp_animalfact)):
     """

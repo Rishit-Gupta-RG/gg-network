@@ -9,10 +9,6 @@ import random
 import json
 import datetime
 
-with open('config/config.json', 'r') as f:
-    data = json.load(f)
-with open('config/replies.json', 'r') as k:
-    msg = json.load(k)
 mrole = 930527570800287804
 hard = []
 gg_gif = "https://images-ext-1.discordapp.net/external/QTG1Wd5PcI3ca2f0CQS3vb7moYmpgVJmQRJObYj2NUo/%3Fsize%3D1024/https/cdn.discordapp.com/icons/817003562663149578/a_427636e6c26d830bbcc36969a9e83608.gif"
