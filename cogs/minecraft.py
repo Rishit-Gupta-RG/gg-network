@@ -23,7 +23,7 @@ class Minecraft(commands.Cog):
         else:
             on = disnake.Embed(title="Status for GG Network", description=f"**Status -** Online \🟢\n**Online players -** `{status.players_online}`\n**Ping -** `{int(status.latency*100)}ms`", color=0x3cff00, timestamp=datetime.utcnow())
             on.set_footer(icon_url=ctx.guild.icon, text=ctx.guild.name)
-            on.set_author(name=data["server_ip"])
+            on.set_author(name="ggnetworkk.aternos.me")
             on.set_thumbnail(url=ctx.guild.icon)
             await ctx.send(embed=on)
 
