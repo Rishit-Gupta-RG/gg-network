@@ -31,4 +31,4 @@ class Minecraft(commands.Cog):
 
 
 def setup(bot):
-    bot.add_cog(Minecraft(bot)
+    bot.add_cog(Minecraft(bot))
