@@ -152,7 +152,7 @@ async def image(inter: disnake.ApplicationCommandInteraction, animal: str = comm
 
 @bot.command()
 async def btest(ctx):
-    with open ('banner/nice.gif', 'rb') as f:
+    with open ('banners/nice.gif', 'rb') as f:
         await ctx.guild.edit(banner=f.read())
 
 @animal.sub_command(description="Sends a random fact of selected animal.")
