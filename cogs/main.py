@@ -212,8 +212,12 @@ async def on_message(message):
 @tasks.loop(hours=1)
 async def banner_changer():
     ok = bot.get_guild(817003562663149578)
-    await ok.edit(banner=random.choice(os.listdir('banners')))
+    await ok.edit(banner=discord.File(random.choice(os.listdir('banners'))))
 banner_changer.start()
+
+@banner_changer.before_loop
+async def before_changer():
+    await bot.wait_until_ready()
 
 @bot.event
 async def on_ready():
