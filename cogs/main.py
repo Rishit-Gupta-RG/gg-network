@@ -28,10 +28,7 @@ from psutil import users
 from mcstatus import BedrockServer
 from dotenv import load_dotenv
 load_dotenv()
-
 from disnake.ext.commands.errors import CheckAnyFailure
-with open('config/config.json', 'r') as f:
-    data = json.load(f)
 
 intents = disnake.Intents.default()
 intents.presences = True
@@ -62,7 +59,7 @@ class Refresh(disnake.ui.View):
     async def confirm(self, button: disnake.ui.Button, interaction: disnake.MessageInteraction):
         await interaction.response.send_message("Refreshing 🔃", ephemeral=True)
         self.value = True
-        server = BedrockServer.lookup(data["server_ip"])
+        server = BedrockServer.lookup('ggnetworkk.aternos.me:34624')
         status = server.status()
         if status.players_max == 1:
             off = disnake.Embed(title="GG Network status panel.", description="**Status -** Offline :red_circle:\n\nDo you want to play now? Turn it on thorugh [Aternos Dashboard](https://aternos.org/server/) or ask someone with <@&880915882895872080> role to turn it on.", color=0xf80000)
