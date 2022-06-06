@@ -211,8 +211,8 @@ async def on_message(message):
 
 @tasks.loop(hours=1)
 async def banner_changer():
-    gg = bot.get_guild(817003562663149578)
-    await gg.edit(banner=random.choice(os.listdir('banners')))
+    ok = bot.get_guild(817003562663149578)
+    await ok.edit(banner=random.choice(os.listdir('banners')))
 banner_changer.start()
 
 @bot.event
