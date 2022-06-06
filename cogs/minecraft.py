@@ -8,8 +8,6 @@ from disnake import AllowedMentions, member, channel
 from psutil import users
 import random
 import json
-with open('config/config.json', 'r') as f:
-    data = json.load(f)
 
 class Minecraft(commands.Cog):
     def __init__(self, bot):
