@@ -60,7 +60,7 @@ class Refresh(disnake.ui.View):
     
     @disnake.ui.button(label="Refresh", style=disnake.ButtonStyle.blurple, emoji='🔃', custom_id='refbutton')
     async def confirm(self, button: disnake.ui.Button, interaction: disnake.MessageInteraction):
-        await interaction.response.send_message("Refreshing 🔃", ephemeral=True)
+        eph = await interaction.response.send_message("Refreshing 🔃", ephemeral=True)
         self.value = True
         server = BedrockServer.lookup('ggnetworkk.aternos.me:34624')
         status = server.status()
@@ -76,6 +76,7 @@ class Refresh(disnake.ui.View):
             on.set_footer(text='Click on the refresh button below to refresh the status.')
             on.set_author(icon_url="https://cdn.discordapp.com/icons/817003562663149578/a_427636e6c26d830bbcc36969a9e83608.gif?size=4096", name="ggnetworkk.aternos.me")
             await interaction.message.edit(embed=on)
+        await eph.edit(content="Refreshed!")
     
 
 @bot.command(hidden=True, description='deploys status checker.')
