@@ -69,13 +69,13 @@ class Refresh(disnake.ui.View):
             off.set_thumbnail(url="https://cdn.discordapp.com/icons/817003562663149578/a_427636e6c26d830bbcc36969a9e83608.gif?size=4096")
             off.set_author(icon_url=inter.author.display_avatar.url, name=inter.author)
             off.set_footer(text='Click on the refresh button below to refresh the status.',icon_url="https://cdn.discordapp.com/icons/817003562663149578/a_427636e6c26d830bbcc36969a9e83608.gif?size=4096")
-            await interaction.message.edit(embed=off)
+            await inter.message.edit(embed=off)
         else:
             on = disnake.Embed(title="GG Network status panel.", description=f"**Status -** Online :green_circle:\n\n**Online Players-** `{status.players_online}`\n**Max. Players -** `{status.players_max}`\n**Version -** `1.18.32`\n**Ping -** `{int(status.latency*100)}ms`", color=0x3cff00)
             on.set_thumbnail(url="https://cdn.discordapp.com/icons/817003562663149578/a_427636e6c26d830bbcc36969a9e83608.gif?size=4096")
             on.set_footer(text='Click on the refresh button below to refresh the status.',icon_url="https://cdn.discordapp.com/icons/817003562663149578/a_427636e6c26d830bbcc36969a9e83608.gif?size=4096")
             on.set_author(icon_url=inter.author.display_avatar.url, name=inter.author)
-            await interaction.message.edit(embed=on)   
+            await inter.message.edit(embed=on)   
 
 @bot.command(hidden=True, description='deploys status checker.')
 async def deploy(ctx):
