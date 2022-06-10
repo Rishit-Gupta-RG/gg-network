@@ -1,5 +1,4 @@
 from cgitb import text
-import imp
 from logging import fatal
 from socket import CAN_BCM_TX_ANNOUNCE
 import disnake
@@ -37,6 +36,7 @@ intents = disnake.Intents.default()
 intents.presences = True
 intents.members = True
 intents.messages = True
+intents.message_content = True
 bot = commands.Bot(command_prefix=commands.when_mentioned,test_guilds=[817003562663149578], intents=intents, case_insensitive=True)
 disnake.AllowedMentions(users=False)
 
@@ -59,7 +59,7 @@ class Refresh(disnake.ui.View):
         self.value = None
     
     @disnake.ui.button(label="Refresh", style=disnake.ButtonStyle.blurple, emoji='🔃', custom_id='refbutton')
-    async def confirm(self, button: disnake.ui.Button, interaction: disnake.MessageInteraction):
+    async def confirm(self, button: disnake.ui.Button, inter: disnake.MessageInteraction):
         eph = await interaction.response.send_message("Refreshing 🔃", ephemeral=True)
         self.value = True
         server = BedrockServer.lookup('ggnetworkk.aternos.me:34624')
