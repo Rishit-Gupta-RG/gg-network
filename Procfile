@@ -1,1 +1,1 @@
-worker: python cogs/main.py
+web: python cogs/main.py
