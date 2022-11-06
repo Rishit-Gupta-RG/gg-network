@@ -58,7 +58,7 @@ class Refresh(disnake.ui.View):
         self.value = None
     
     @disnake.ui.button(label="Refresh", style=disnake.ButtonStyle.blurple, emoji='🔃', custom_id='refbutton')
-    async def confirm(self, button: disnake.ui.Button, inter: disnake.MessageInteraction):
+    async def confirm(self, button: disnake.ui.Button, inter: disnake.ApplicationCommandInteraction):
         eph = await inter.defer("Refreshing 🔃", ephemeral=True)
         self.value = True
         server = BedrockServer.lookup('ggnetworkk.aternos.me:34624')
