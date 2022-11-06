@@ -10,7 +10,7 @@ import json
 class Minecraft(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
-    @commands.slash_command(description="Checks status for GG Network.")
+    @commands.command(description="Checks status for GG Network.")
     async def check(self, ctx):
         server = BedrockServer.lookup('ggnetworkk.aternos.me:34624')
         status = server.status()
