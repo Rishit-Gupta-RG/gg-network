@@ -43,7 +43,7 @@ initial_extensions = ['cogs.minecraft', 'cogs.mod']
 
 if __name__ == '__main__':
     for extension in initial_extensions:
-        bot.load_extension(extension)
+        await bot.load_extension(extension)
 
 @bot.command(hidden=True)
 async def ping(ctx):
