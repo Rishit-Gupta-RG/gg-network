@@ -1,11 +1,9 @@
 from datetime import datetime
-from sqlite3 import Timestamp
 from unicodedata import name
 from mcstatus import BedrockServer
 import disnake
 from disnake.ext import commands
 from disnake import AllowedMentions, member, channel
-from psutil import users
 import random
 import json
 
