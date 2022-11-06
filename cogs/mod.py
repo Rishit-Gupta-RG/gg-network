@@ -1,10 +1,6 @@
-from cgitb import text
-from pydoc import describe
-from unicodedata import name
 import disnake
 from disnake.ext import commands
 from disnake import AllowedMentions, member, channel
-from psutil import users
 import random
 import json
 from datetime import datetime
