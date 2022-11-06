@@ -25,7 +25,6 @@ import sys, traceback
 import json
 from disnake import AppCommandInteraction
 import aiohttp
-from psutil import users
 from mcstatus import BedrockServer
 from dotenv import load_dotenv
 load_dotenv()
