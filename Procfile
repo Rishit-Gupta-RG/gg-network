@@ -1,1 +1,1 @@
-web: python cogs/main.py
+web: python main.py
