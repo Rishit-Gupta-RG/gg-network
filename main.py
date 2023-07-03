@@ -1,6 +1,3 @@
-from cgitb import text
-from logging import fatal
-from socket import CAN_BCM_TX_ANNOUNCE
 import disnake
 from disnake import AllowedMentions, Intents, Interaction, channel
 from disnake import embeds
