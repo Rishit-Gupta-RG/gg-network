@@ -83,43 +83,6 @@ async def deploy(ctx):
     off.set_footer(icon_url=ctx.guild.icon, text=ctx.guild.name)
     await ctx.send(embed=off, view=view)
 
-# @bot.slash_command(description="About me.")
-# async def about(ctx):
-#     embed = disnake.Embed(title="GG SMP", description= "Official Bot of GG SMP!", color=disnake.Color.red())
-#     embed.add_field(name="**Developed by -**", value="Rishit Gupta")
-
-#     await ctx.send(embed=embed)
-
-# @bot.slash_command(description="Shows server information.")
-# async def serverinfo(ctx):
-#   name = str(ctx.guild.name)
-#   description = str(ctx.guild.description)
-
-#   owner = "**AKG#1234**"
-#   id = str(ctx.guild.id)
-#   region = str(ctx.guild.region)
-#   memberCount = str(ctx.guild.member_count)
-
-#   icon = str(ctx.guild.icon_url)
-   
-#   embed = disnake.Embed(
-#       title=name + " Server Information",
-#       description=description,
-#       color=disnake.Color.blue()
-#     )
-#   embed.set_thumbnail(url=icon)
-#   embed.add_field(name="Owner", value=owner, inline=True)
-#   embed.add_field(name="Server ID", value=id, inline=True)
-#   embed.add_field(name="Region", value=region, inline=True)
-#   embed.add_field(name="Member Count", value=memberCount, inline=True)
-
-#   await ctx.send(embed=embed)
-
-@tasks.loop(hours=1)
-async def banner_changer():
-    gg = bot.get_guild(817003562663149578)
-    await gg.edit(banner=random.choice(os.listdir('banners')))
-
 @bot.event
 async def on_ready():
     print('Bot is ready.')
